@@ -30,8 +30,17 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         transition={{ duration: 0.6 }}
         className="mb-10"
       >
-        <div className="w-24 h-24 mx-auto rounded-2xl border border-cyan-500/30 bg-card flex items-center justify-center cyan-glow animate-float overflow-hidden">
-          <img src="/logo.png" alt="Mithaq AI" className="w-full h-full object-contain" />
+        <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 200, height: 200 }}>
+          <img
+            src="/logo.png"
+            alt="Mithaq AI"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              filter: "drop-shadow(0 0 22px rgba(0,210,230,0.6))",
+            }}
+          />
         </div>
       </motion.div>
 
