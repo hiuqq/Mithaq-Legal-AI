@@ -104,8 +104,12 @@ export default function Home() {
       <footer className="border-t border-border/30 py-10 px-6 text-center">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-              <span className="text-white font-black text-xs" style={{ fontFamily: 'Cairo, sans-serif' }}>م</span>
+            <div className="flex items-center justify-center" style={{ width: 32, height: 32 }}>
+              <img
+                src="/logo.png"
+                alt="Mithaq AI"
+                style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,210,230,0.5))" }}
+              />
             </div>
             <span className="font-black text-foreground">ميثاق <span className="text-cyan-400">AI</span></span>
           </div>
