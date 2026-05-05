@@ -30,8 +30,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-              <span className="text-white font-black text-sm" style={{ fontFamily: 'Cairo, sans-serif' }}>م</span>
+            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center">
+              <img src="/logo.png" alt="Mithaq AI" className="w-full h-full object-contain" />
             </div>
             <span className="font-black text-foreground text-lg tracking-tight">
               ميثاق <span className="text-cyan-400">AI</span>

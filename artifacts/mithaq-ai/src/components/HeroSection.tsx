@@ -31,13 +31,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         className="mb-10"
       >
         <div className="w-24 h-24 mx-auto rounded-2xl border border-cyan-500/30 bg-card flex items-center justify-center cyan-glow animate-float overflow-hidden">
-          {/* Logo placeholder — replace with <img src="/logo.png" alt="Mithaq AI" /> */}
-          <div className="flex flex-col items-center gap-1">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-              <span className="text-white font-bold text-lg" style={{ fontFamily: 'Cairo, sans-serif' }}>م</span>
-            </div>
-            <span className="text-cyan-400 text-[9px] font-semibold tracking-widest uppercase">LOGO</span>
-          </div>
+          <img src="/logo.png" alt="Mithaq AI" className="w-full h-full object-contain" />
         </div>
       </motion.div>
 
