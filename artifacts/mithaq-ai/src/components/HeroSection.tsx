@@ -30,7 +30,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         transition={{ duration: 0.6 }}
         className="mb-10"
       >
-        <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 200, height: 200 }}>
+        <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 120, height: 120 }}>
           <img
             src="/logo.png"
             alt="Mithaq AI"
