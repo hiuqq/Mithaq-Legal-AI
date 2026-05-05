@@ -6,7 +6,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onStartClick }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-grid-pattern">
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-grid-pattern pt-16">
       {/* Radial glow background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-cyan-500/5 blur-[120px]" />
