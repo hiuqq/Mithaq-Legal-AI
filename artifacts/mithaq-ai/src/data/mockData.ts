@@ -80,16 +80,6 @@ export const AGENTS = [
     borderColor: "border-teal-400/30",
     glowColor: "rgba(20, 184, 166, 0.15)",
   },
-  {
-    id: "monitoring",
-    name: "وكيل المراقبة المستمرة",
-    nameEn: "Continuous Compliance Agent",
-    description: "يراقب التحديثات التنظيمية الجديدة ويعيد فتح العقود المتأثرة تلقائيًا لضمان الامتثال المستمر.",
-    icon: "👁️",
-    color: "from-cyan-500/20 to-teal-600/10",
-    borderColor: "border-cyan-400/30",
-    glowColor: "rgba(0, 210, 180, 0.15)",
-  },
 ];
 
 export const ARCHITECTURE_NODES = [
