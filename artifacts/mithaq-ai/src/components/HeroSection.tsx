@@ -19,7 +19,12 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         <motion.div
           className="absolute w-full h-px bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent"
           animate={{ y: ["0vh", "100vh"] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear", repeatDelay: 4 }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear",
+            repeatDelay: 4,
+          }}
         />
       </div>
 
@@ -30,7 +35,10 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         transition={{ duration: 0.6 }}
         className="mb-10"
       >
-        <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 120, height: 120 }}>
+        <div
+          className="mx-auto flex items-center justify-center animate-float"
+          style={{ width: 70, height: 70 }}
+        >
           <img
             src="/logo.png"
             alt="Mithaq AI"
@@ -58,7 +66,9 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         </h1>
         <div className="flex items-center justify-center gap-2 mt-3">
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-400/50" />
-          <span className="text-cyan-400/60 text-xs tracking-[0.3em] uppercase font-medium">Saudi Labor Law 2025</span>
+          <span className="text-cyan-400/60 text-xs tracking-[0.3em] uppercase font-medium">
+            Saudi Labor Law 2025
+          </span>
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-400/50" />
         </div>
       </motion.div>
@@ -70,7 +80,8 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         transition={{ duration: 0.7, delay: 0.3 }}
         className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-12 font-medium"
       >
-        منظومة وكلاء ذكية لمراجعة العقود وضمان الامتثال وفق نظام العمل السعودي 2025
+        منظومة وكلاء ذكية لمراجعة العقود وضمان الامتثال وفق نظام العمل السعودي
+        2025
       </motion.p>
 
       {/* CTA Button */}
@@ -83,9 +94,11 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
           onClick={onStartClick}
           className="group relative px-10 py-4 text-lg font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
           style={{
-            background: "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
+            background:
+              "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
             color: "hsl(222, 47%, 8%)",
-            boxShadow: "0 0 30px rgba(0, 220, 220, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+            boxShadow:
+              "0 0 30px rgba(0, 220, 220, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
           }}
         >
           <span className="relative z-10">ابدأ فحص العقد</span>
@@ -106,8 +119,12 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
           { value: "٣٠ث", label: "وقت التحليل" },
         ].map((stat) => (
           <div key={stat.label} className="text-center">
-            <div className="text-2xl font-black gradient-text">{stat.value}</div>
-            <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+            <div className="text-2xl font-black gradient-text">
+              {stat.value}
+            </div>
+            <div className="text-xs text-muted-foreground mt-1">
+              {stat.label}
+            </div>
           </div>
         ))}
       </motion.div>
