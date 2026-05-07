@@ -312,13 +312,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
       font-size: 28px;
       font-weight: 900;
       color: #0a2540;
-      margin-bottom: 4px;
-    }
-    .doc-header .title-bi {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0a2540;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
     .doc-header .title-en {
       font-size: 17px;
@@ -453,9 +447,8 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
 <div class="page">
 
   <div class="doc-header">
-    <div class="title-ar">عقد</div>
-    <div class="title-bi">عملEmployment</div>
-    <div class="title-en">Contract</div>
+    <div class="title-ar">عقد عمل</div>
+    <div class="title-en">Employment Contract</div>
   </div>
   <hr class="header-hr" />
 
