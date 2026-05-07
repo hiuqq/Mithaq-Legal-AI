@@ -441,6 +441,33 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
       border-top: 1px solid #e5e7eb;
       padding-top: 12px;
     }
+    .print-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 999;
+    }
+    .print-btn {
+      background: #0a2540;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 32px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      box-shadow: 0 4px 16px rgba(10,37,64,0.25);
+      letter-spacing: 0.02em;
+    }
+    .print-btn:hover { background: #1a4a7a; }
+    @media print {
+      .print-bar { display: none !important; }
+      body { padding-bottom: 0; }
+    }
   </style>
 </head>
 <body>
@@ -529,6 +556,11 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
   </div>
 
 </div>
+
+<div class="print-bar">
+  <button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+</div>
+
 </body>
 </html>`;
 
