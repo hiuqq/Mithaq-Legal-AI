@@ -78,6 +78,21 @@ export default function Home() {
         {/* Upload */}
         <div ref={uploadRef} id="upload-section">
           <UploadSection onResults={handleResults} />
+
+          {/* Results — shown directly below analysis steps */}
+          <AnimatePresence>
+            {report && (
+              <motion.div
+                ref={resultsRef}
+                key="results"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                <ResultsSection report={report} analysisTime={analysisTime} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Agents */}
@@ -85,21 +100,6 @@ export default function Home() {
 
         {/* Architecture */}
         <ArchitectureSection />
-
-        {/* Results — shown after analysis */}
-        <AnimatePresence>
-          {report && (
-            <motion.div
-              ref={resultsRef}
-              key="results"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-            >
-              <ResultsSection report={report} analysisTime={analysisTime} />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </main>
 
       {/* Footer */}
