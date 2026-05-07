@@ -294,167 +294,242 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
     body {
       font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
       background: #ffffff;
-      color: #111111;
-      padding: 60px 72px;
+      color: #000000;
       direction: rtl;
-      line-height: 1.9;
+      line-height: 1.8;
+    }
+    .page {
       max-width: 860px;
       margin: 0 auto;
+      padding: 0 48px 48px;
     }
+    /* Header */
     .doc-header {
+      background: #0a2540;
+      color: #ffffff;
       text-align: center;
-      border-bottom: 3px double #111;
-      padding-bottom: 24px;
-      margin-bottom: 32px;
+      padding: 36px 48px 28px;
+      margin-bottom: 0;
     }
     .doc-header h1 {
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 900;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       margin-bottom: 6px;
     }
-    .doc-header .sub {
-      font-size: 13px;
-      color: #555;
+    .doc-header .en-title {
+      font-size: 14px;
+      color: #a8c8e8;
+      letter-spacing: 0.1em;
     }
-    .article {
+    .header-divider {
+      height: 4px;
+      background: #0a2540;
+      margin-bottom: 32px;
+    }
+    /* Parties */
+    .parties-section {
+      display: flex;
+      gap: 24px;
       margin-bottom: 28px;
     }
-    .article-title {
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 8px;
+    .party-box {
+      flex: 1;
+      border: 1px solid #d0d8e4;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .party-header {
+      background: #0a2540;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 14px;
+      letter-spacing: 0.04em;
+    }
+    .party-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .party-table tr:nth-child(odd)  { background: #ffffff; }
+    .party-table tr:nth-child(even) { background: #f0f4f8; }
+    .party-table td {
+      padding: 7px 14px;
       color: #111;
+    }
+    .party-table td:first-child {
+      font-weight: 700;
+      color: #0a2540;
+      white-space: nowrap;
+      width: 38%;
+    }
+    /* Articles */
+    .section-divider {
+      border: none;
+      border-top: 2px solid #0a2540;
+      margin: 28px 0 24px;
+    }
+    .article-divider {
+      border: none;
+      border-top: 1px solid #d0d8e4;
+      margin: 20px 0;
+    }
+    .article-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #1a4a7a;
+      margin-bottom: 6px;
     }
     .article-body {
-      font-size: 14px;
-      color: #222;
-      padding-right: 16px;
-      border-right: 3px solid #ddd;
-    }
-    .signatures {
-      margin-top: 60px;
-      display: flex;
-      justify-content: space-between;
-      gap: 40px;
-    }
-    .sig-block {
-      flex: 1;
-      border-top: 1px solid #999;
-      padding-top: 12px;
-      text-align: center;
-      font-size: 13px;
-      color: #444;
-    }
-    .sig-block .sig-label {
-      font-weight: 700;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #111;
-      margin-bottom: 4px;
+      line-height: 1.85;
     }
-    .sig-spacer {
-      height: 48px;
-    }
-    .stamp {
+    /* Signatures */
+    .sig-table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 40px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: #16a34a;
-      border: 2px solid #16a34a;
-      border-radius: 8px;
-      padding: 12px 24px;
-      display: inline-block;
-      letter-spacing: 0.03em;
+      font-size: 13px;
     }
+    .sig-table th {
+      background: #0a2540;
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .sig-table td {
+      border: 1px solid #d0d8e4;
+      padding: 10px 20px;
+      text-align: center;
+      color: #333;
+    }
+    .sig-spacer { height: 44px; }
+    /* Stamp */
     .stamp-wrapper {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 36px;
+    }
+    .stamp {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #15803d;
+      border: 2px solid #15803d;
+      border-radius: 8px;
+      padding: 11px 28px;
+      letter-spacing: 0.03em;
     }
     .footer {
-      margin-top: 48px;
+      margin-top: 36px;
       text-align: center;
       font-size: 11px;
       color: #aaa;
       border-top: 1px solid #e5e7eb;
-      padding-top: 16px;
+      padding-top: 14px;
     }
   </style>
 </head>
 <body>
 
   <div class="doc-header">
-    <h1>عقد عمل — النسخة المعدّلة</h1>
-    <div class="sub">متوافق مع نظام العمل السعودي 2025 &nbsp;|&nbsp; تاريخ الإصدار: ${date}</div>
+    <h1>عقد عمل</h1>
+    <div class="en-title">Employment Contract</div>
   </div>
+  <div class="header-divider"></div>
 
-  <div class="article">
+  <div class="page">
+
+    <div class="parties-section">
+      <div class="party-box">
+        <div class="party-header">الطرف الأول — صاحب العمل</div>
+        <table class="party-table">
+          <tr><td>اسم المنشأة</td><td>________________________</td></tr>
+          <tr><td>السجل التجاري</td><td>________________________</td></tr>
+          <tr><td>العنوان</td><td>________________________</td></tr>
+          <tr><td>الممثل القانوني</td><td>________________________</td></tr>
+        </table>
+      </div>
+      <div class="party-box">
+        <div class="party-header">الطرف الثاني — الموظف</div>
+        <table class="party-table">
+          <tr><td>الاسم الكامل</td><td>________________________</td></tr>
+          <tr><td>رقم الهوية</td><td>________________________</td></tr>
+          <tr><td>الجنسية</td><td>________________________</td></tr>
+          <tr><td>تاريخ المباشرة</td><td>${date}</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
     <div class="article-title">المادة الأولى: فترة التجربة</div>
-    <div class="article-body">
-      لا تتجاوز فترة التجربة 180 يوماً من تاريخ المباشرة بالعمل، وخلال هذه الفترة يحق لأي من الطرفين إنهاء العقد دون إشعار مسبق.
-    </div>
-  </div>
+    <div class="article-body">لا تتجاوز فترة التجربة 180 يوماً من تاريخ المباشرة بالعمل، وخلال هذه الفترة يحق لأي من الطرفين إنهاء العقد دون إشعار مسبق.</div>
 
-  <div class="article">
+    <hr class="article-divider" />
+
     <div class="article-title">المادة الثانية: ساعات العمل</div>
-    <div class="article-body">
-      لا تزيد ساعات العمل عن ثماني (8) ساعات يومياً وثمانٍ وأربعين (48) ساعة أسبوعياً.
-    </div>
-  </div>
+    <div class="article-body">لا تزيد ساعات العمل عن ثماني (8) ساعات يومياً وثمانٍ وأربعين (48) ساعة أسبوعياً.</div>
 
-  <div class="article">
+    <hr class="article-divider" />
+
     <div class="article-title">المادة الثالثة: الراتب والمكافآت</div>
-    <div class="article-body">
-      يتقاضى الموظف راتباً شهرياً إجمالياً قدره (12,000) اثنا عشر ألف ريال سعودي.
-    </div>
-  </div>
+    <div class="article-body">يتقاضى الموظف راتباً شهرياً إجمالياً قدره (12,000) اثنا عشر ألف ريال سعودي.</div>
 
-  <div class="article">
+    <hr class="article-divider" />
+
     <div class="article-title">المادة الرابعة: الإجازة السنوية</div>
-    <div class="article-body">
-      يستحق الموظف إجازة سنوية مدتها واحد وعشرون (21) يوماً بأجر كامل.
-    </div>
-  </div>
+    <div class="article-body">يستحق الموظف إجازة سنوية مدتها واحد وعشرون (21) يوماً بأجر كامل.</div>
 
-  <div class="article">
+    <hr class="article-divider" />
+
     <div class="article-title">المادة الخامسة: إجازة الوضع</div>
-    <div class="article-body">
-      تستحق العاملة إجازة وضع مدتها اثنا عشر (12) أسبوعاً عند الوضع.
-    </div>
-  </div>
+    <div class="article-body">تستحق العاملة إجازة وضع مدتها اثنا عشر (12) أسبوعاً عند الوضع.</div>
 
-  <div class="article">
+    <hr class="article-divider" />
+
     <div class="article-title">المادة السادسة: مكافأة نهاية الخدمة</div>
-    <div class="article-body">
-      يستحق الموظف مكافأة نهاية خدمة بواقع أجر شهر عن كل سنة من سنوات الخدمة.
+    <div class="article-body">يستحق الموظف مكافأة نهاية خدمة بواقع أجر شهر عن كل سنة من سنوات الخدمة.</div>
+
+    <table class="sig-table">
+      <thead>
+        <tr>
+          <th>توقيع الطرف الأول — صاحب العمل</th>
+          <th>توقيع الطرف الثاني — الموظف</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>الاسم: ________________________</td>
+          <td>الاسم: ________________________</td>
+        </tr>
+        <tr>
+          <td><div class="sig-spacer"></div></td>
+          <td><div class="sig-spacer"></div></td>
+        </tr>
+        <tr>
+          <td>التوقيع: ________________________</td>
+          <td>التوقيع: ________________________</td>
+        </tr>
+        <tr>
+          <td>التاريخ: ${date}</td>
+          <td>التاريخ: ${date}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="stamp-wrapper">
+      <span class="stamp">✅ معتمد من ميثاق AI | متوافق مع نظام العمل 2025</span>
     </div>
-  </div>
 
-  <div class="signatures">
-    <div class="sig-block">
-      <div class="sig-label">صاحب العمل</div>
-      <div>الاسم: ________________________</div>
-      <div class="sig-spacer"></div>
-      <div>التوقيع: ________________________</div>
-      <div style="margin-top:8px;color:#888">التاريخ: ${date}</div>
+    <div class="footer">
+      عقد معدّل بواسطة ميثاق AI • نسخة تجريبية — Hackathon Demo v1.0
     </div>
-    <div class="sig-block">
-      <div class="sig-label">الموظف</div>
-      <div>الاسم: ________________________</div>
-      <div class="sig-spacer"></div>
-      <div>التوقيع: ________________________</div>
-      <div style="margin-top:8px;color:#888">التاريخ: ${date}</div>
-    </div>
-  </div>
 
-  <div class="stamp-wrapper">
-    <span class="stamp">✅ معتمد من ميثاق AI | متوافق مع نظام العمل 2025</span>
   </div>
-
-  <div class="footer">
-    عقد معدّل بواسطة ميثاق AI • نسخة تجريبية — Hackathon Demo v1.0
-  </div>
-
 </body>
 </html>`;
 
