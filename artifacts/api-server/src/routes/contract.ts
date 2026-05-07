@@ -1,11 +1,25 @@
 import { Router } from "express";
-const router = Router();
+import multer from "multer";
 
-router.post("/analyze-contract", async (req, res) => {
+const router = Router();
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
+  fileFilter: (_req, file, cb) => {
+    if (file.mimetype === "application/pdf") {
+      cb(null, true);
+    } else {
+      cb(new Error("Only PDF files are allowed"));
+    }
+  },
+});
+
+router.post("/analyze-contract", upload.single("file"), async (req, res) => {
   try {
-    // TODO: Connect to LangFlow agents later
-    // For now returning mock compliance report
-    
+    // req.file is the uploaded PDF (buffer + metadata)
+    // TODO: Pass req.file.buffer to LangFlow agents when ready
+    // const pdfBuffer = req.file?.buffer;
+
     const mockReport = {
       scoreBefore: 62,
       scoreAfter: 96,
