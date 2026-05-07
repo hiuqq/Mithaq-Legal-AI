@@ -37,7 +37,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
       >
         <div
           className="mx-auto flex items-center justify-center animate-float"
-          style={{ width: 70, height: 70 }}
+          style={{ width: 160, height: 160 }}
         >
           <img
             src="/logo.png"
@@ -46,7 +46,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
               width: "100%",
               height: "100%",
               objectFit: "contain",
-              filter: "drop-shadow(0 0 22px rgba(0,200,83,0.6))",
+              filter: "drop-shadow(0 0 22px rgba(0,168,107,0.6))",
             }}
           />
         </div>
@@ -94,10 +94,10 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
           className="group relative px-10 py-4 text-lg font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
           style={{
             background:
-              "linear-gradient(135deg, hsl(145, 85%, 45%) 0%, hsl(145, 85%, 38%) 100%)",
+              "linear-gradient(135deg, hsl(158, 100%, 33%) 0%, hsl(158, 100%, 28%) 100%)",
             color: "hsl(222, 47%, 8%)",
             boxShadow:
-              "0 0 30px rgba(0, 200, 83, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+              "0 0 30px rgba(0, 168, 107, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
           }}
         >
           <span className="relative z-10">ابدأ هندسة العقد</span>

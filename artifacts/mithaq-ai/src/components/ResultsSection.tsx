@@ -53,8 +53,8 @@ function ScoreCircle({ score, label, delay }: { score: number; label: string; de
           />
           <defs>
             <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(145, 85%, 45%)" />
-              <stop offset="100%" stopColor="hsl(145, 85%, 38%)" />
+              <stop offset="0%" stopColor="hsl(158, 100%, 33%)" />
+              <stop offset="100%" stopColor="hsl(158, 100%, 28%)" />
             </linearGradient>
           </defs>
         </svg>

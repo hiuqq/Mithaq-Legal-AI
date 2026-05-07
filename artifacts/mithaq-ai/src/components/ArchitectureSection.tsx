@@ -40,7 +40,7 @@ export function ArchitectureSection() {
               transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
               className="h-full origin-right"
               style={{
-                background: "linear-gradient(90deg, hsl(145, 85%, 45%, 0.5) 0%, hsl(145, 85%, 45%, 0.1) 100%)",
+                background: "linear-gradient(90deg, hsl(158, 100%, 33%, 0.5) 0%, hsl(158, 100%, 33%, 0.1) 100%)",
               }}
             />
           </div>
@@ -59,8 +59,8 @@ export function ArchitectureSection() {
                 className="w-16 h-16 rounded-2xl border border-emerald-500/30 bg-card flex items-center justify-center text-2xl transition-all duration-300 group-hover:border-emerald-400/60"
                 style={{
                   boxShadow: index === ARCHITECTURE_NODES.length - 1
-                    ? "0 0 25px rgba(0, 200, 83, 0.3)"
-                    : "0 0 10px rgba(0, 200, 83, 0.1)",
+                    ? "0 0 25px rgba(0, 168, 107, 0.3)"
+                    : "0 0 10px rgba(0, 168, 107, 0.1)",
                 }}
               >
                 {node.icon}
