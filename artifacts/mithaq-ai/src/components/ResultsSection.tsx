@@ -277,9 +277,182 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
   };
 
   const handleDownloadRevised = () => {
-    // TODO: Connect to real revised contract download API
-    // await fetch('/api/contracts/revised/download', { method: 'GET' });
-    alert("سيتم ربط هذا الزر بخدمة تحميل العقد المعدل لاحقًا");
+    const date = new Date().toLocaleDateString("ar-SA", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const clausesHtml = report.rows
+      .map((row, i) => {
+        const isRevised = row.status !== "متوافق";
+        return `
+        <div class="clause">
+          <div class="clause-num">البند ${i + 1}</div>
+          ${
+            isRevised
+              ? `
+            <div class="clause-original">
+              <span class="clause-tag original-tag">النص الأصلي</span>
+              <p>${row.originalClause}</p>
+            </div>
+            <div class="clause-revised">
+              <span class="clause-tag revised-tag">النص المعدّل ✓</span>
+              <p>${row.suggestedText}</p>
+              <span class="ref">${row.legalRef}</span>
+            </div>`
+              : `
+            <div class="clause-ok">
+              <span class="clause-tag ok-tag">متوافق ✓</span>
+              <p>${row.originalClause}</p>
+            </div>`
+          }
+        </div>`;
+      })
+      .join("");
+
+    const html = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>العقد المعدّل - ميثاق AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background: #0d1526;
+      color: #e2e8f0;
+      padding: 40px 32px;
+      direction: rtl;
+      line-height: 1.7;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e3a5f;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .brand { font-size: 26px; font-weight: 900; color: #00d4e8; }
+    .brand span { color: #e2e8f0; }
+    .meta { font-size: 13px; color: #64748b; text-align: left; }
+    .meta div { margin-top: 4px; }
+    .notice {
+      background: #0a2a1a;
+      border: 1px solid #34d39944;
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .contract-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #f1f5f9;
+      margin-bottom: 24px;
+      text-align: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #1e3a5f;
+    }
+    .clause {
+      margin-bottom: 24px;
+      background: #111d35;
+      border: 1px solid #1e3a5f;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .clause-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: #00d4e8;
+      padding: 10px 20px;
+      background: #0d1a2e;
+      border-bottom: 1px solid #1e3a5f;
+      letter-spacing: 0.05em;
+    }
+    .clause-original, .clause-revised, .clause-ok {
+      padding: 16px 20px;
+    }
+    .clause-original {
+      border-bottom: 1px solid #1e3a5f;
+      background: #1a0d0d;
+    }
+    .clause-original p { color: #fca5a5; text-decoration: line-through; opacity: 0.7; margin-top: 8px; }
+    .clause-revised { background: #0a1a0d; }
+    .clause-revised p { color: #86efac; margin-top: 8px; }
+    .clause-ok { }
+    .clause-ok p { color: #94a3b8; margin-top: 8px; }
+    .clause-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .original-tag { background: #f871711a; color: #f87171; border: 1px solid #f8717133; }
+    .revised-tag { background: #34d3991a; color: #34d399; border: 1px solid #34d39933; }
+    .ok-tag { background: #00d4e81a; color: #00d4e8; border: 1px solid #00d4e833; }
+    .ref {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #00d4e81a;
+      color: #00d4e8;
+      border: 1px solid #00d4e833;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 12px;
+      color: #334155;
+      border-top: 1px solid #1e3a5f;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="brand"><span>ميثاق </span>AI</div>
+      <div style="font-size:13px;color:#64748b;margin-top:4px">العقد المعدّل وفق نظام العمل السعودي 2025</div>
+    </div>
+    <div class="meta">
+      <div>تاريخ التعديل: ${date}</div>
+      <div>درجة الامتثال: ${report.scoreAfter}٪</div>
+    </div>
+  </div>
+
+  <div class="notice">
+    ✅ تم تطبيق جميع التعديلات المقترحة من وكيل الصياغة على هذا العقد.
+    البنود المشطوبة هي النصوص الأصلية المخالفة، والبنود الخضراء هي الصياغة المعتمدة.
+  </div>
+
+  <div class="contract-title">عقد العمل — النسخة المعدّلة</div>
+
+  ${clausesHtml}
+
+  <div class="footer">
+    عقد معدّل بواسطة ميثاق AI • نسخة تجريبية — Hackathon Demo v1.0
+  </div>
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `mithaq-revised-contract-${Date.now()}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const handleSendForReview = () => {
