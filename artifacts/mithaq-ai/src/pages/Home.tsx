@@ -42,7 +42,7 @@ export default function Home() {
                   width: "100%",
                   height: "100%",
                   objectFit: "contain",
-                  filter: "drop-shadow(0 0 8px rgba(0,210,230,0.6))",
+                  filter: "drop-shadow(0 0 8px rgba(0,200,83,0.6))",
                 }}
               />
             </div>
@@ -63,7 +63,7 @@ export default function Home() {
             onClick={scrollToUpload}
             className="text-sm font-bold px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105"
             style={{
-              background: "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
+              background: "linear-gradient(135deg, hsl(145, 85%, 45%) 0%, hsl(145, 85%, 38%) 100%)",
               color: "hsl(222, 47%, 8%)",
             }}
           >
@@ -112,7 +112,7 @@ export default function Home() {
               <img
                 src="/logo.png"
                 alt="Mithaq AI"
-                style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,210,230,0.5))" }}
+                style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,200,83,0.5))" }}
               />
             </div>
             <span className="font-black text-foreground">ميثاق <span className="text-emerald-400">AI</span></span>
