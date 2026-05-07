@@ -86,9 +86,9 @@ export const AGENTS = [
     nameEn: "Continuous Compliance Agent",
     description: "يراقب التحديثات التنظيمية الجديدة ويعيد فتح العقود المتأثرة تلقائيًا لضمان الامتثال المستمر.",
     icon: "👁️",
-    color: "from-indigo-500/20 to-purple-600/10",
-    borderColor: "border-indigo-400/30",
-    glowColor: "rgba(99, 102, 241, 0.15)",
+    color: "from-cyan-500/20 to-teal-600/10",
+    borderColor: "border-cyan-400/30",
+    glowColor: "rgba(0, 210, 180, 0.15)",
   },
 ];
 
