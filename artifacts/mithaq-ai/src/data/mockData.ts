@@ -98,6 +98,5 @@ export const ARCHITECTURE_NODES = [
   { label: "وكيل التدقيق", icon: "🔍" },
   { label: "وكيل الصياغة", icon: "✍️" },
   { label: "وكيل الإشراف", icon: "📊" },
-  { label: "وكيل المراقبة", icon: "👁️" },
   { label: "تقرير الامتثال", icon: "✅" },
 ];
