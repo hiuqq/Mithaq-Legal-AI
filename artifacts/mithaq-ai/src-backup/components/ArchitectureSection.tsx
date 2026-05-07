@@ -6,7 +6,7 @@ export function ArchitectureSection() {
     <section id="architecture" className="py-24 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-grid-pattern opacity-50" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/2 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/2 to-transparent" />
 
       <div className="max-w-6xl mx-auto relative">
         {/* Section header */}
@@ -17,15 +17,15 @@ export function ArchitectureSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-sm font-medium mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-sm font-medium mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
             البنية التقنية
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
             معمارية النظام
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            تدفق آلي ومتسلسل من رفع العقد حتى إصدار تقرير الجاهزية الاستثمارية النهائي
+            تدفق آلي ومتسلسل من رفع العقد حتى إصدار تقرير الامتثال النهائي
           </p>
         </motion.div>
 
@@ -40,7 +40,7 @@ export function ArchitectureSection() {
               transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
               className="h-full origin-right"
               style={{
-                background: "linear-gradient(90deg, hsl(145, 85%, 45%, 0.5) 0%, hsl(145, 85%, 45%, 0.1) 100%)",
+                background: "linear-gradient(90deg, hsl(186, 95%, 55%, 0.5) 0%, hsl(186, 95%, 55%, 0.1) 100%)",
               }}
             />
           </div>
@@ -56,11 +56,11 @@ export function ArchitectureSection() {
             >
               {/* Node */}
               <div
-                className="w-16 h-16 rounded-2xl border border-emerald-500/30 bg-card flex items-center justify-center text-2xl transition-all duration-300 group-hover:border-emerald-400/60"
+                className="w-16 h-16 rounded-2xl border border-cyan-500/30 bg-card flex items-center justify-center text-2xl transition-all duration-300 group-hover:border-cyan-400/60"
                 style={{
                   boxShadow: index === ARCHITECTURE_NODES.length - 1
-                    ? "0 0 25px rgba(0, 200, 83, 0.3)"
-                    : "0 0 10px rgba(0, 200, 83, 0.1)",
+                    ? "0 0 25px rgba(0, 220, 220, 0.3)"
+                    : "0 0 10px rgba(0, 220, 220, 0.1)",
                 }}
               >
                 {node.icon}
@@ -68,7 +68,7 @@ export function ArchitectureSection() {
 
               {/* Arrow between nodes */}
               {index < ARCHITECTURE_NODES.length - 1 && (
-                <div className="absolute top-8 -left-4 text-emerald-400/40 text-sm">←</div>
+                <div className="absolute top-8 -left-4 text-cyan-400/40 text-sm">←</div>
               )}
 
               {/* Label */}
@@ -77,7 +77,7 @@ export function ArchitectureSection() {
               </span>
 
               {/* Step number */}
-              <span className="text-[10px] text-emerald-400/40 font-mono">
+              <span className="text-[10px] text-cyan-400/40 font-mono">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </motion.div>
@@ -96,13 +96,13 @@ export function ArchitectureSection() {
               className="flex flex-col items-center"
             >
               <div className="flex items-center gap-4 py-3">
-                <div className="w-12 h-12 rounded-xl border border-emerald-500/30 bg-card flex items-center justify-center text-xl">
+                <div className="w-12 h-12 rounded-xl border border-cyan-500/30 bg-card flex items-center justify-center text-xl">
                   {node.icon}
                 </div>
                 <span className="text-sm font-semibold text-foreground/80">{node.label}</span>
               </div>
               {index < ARCHITECTURE_NODES.length - 1 && (
-                <div className="w-px h-6 bg-gradient-to-b from-emerald-400/40 to-transparent" />
+                <div className="w-px h-6 bg-gradient-to-b from-cyan-400/40 to-transparent" />
               )}
             </motion.div>
           ))}

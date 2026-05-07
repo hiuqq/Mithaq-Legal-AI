@@ -9,7 +9,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-grid-pattern pt-16">
       {/* Radial glow background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-emerald-500/5 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-cyan-500/5 blur-[120px]" />
         <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-blue-500/5 blur-[80px]" />
         <div className="absolute bottom-1/4 left-1/4 w-[250px] h-[250px] rounded-full bg-teal-500/5 blur-[80px]" />
       </div>
@@ -17,7 +17,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
       {/* Animated scan line */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          className="absolute w-full h-px bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent"
+          className="absolute w-full h-px bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent"
           animate={{ y: ["0vh", "100vh"] }}
           transition={{
             duration: 8,
@@ -46,7 +46,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
               width: "100%",
               height: "100%",
               objectFit: "contain",
-              filter: "drop-shadow(0 0 22px rgba(0,200,83,0.6))",
+              filter: "drop-shadow(0 0 22px rgba(0,210,230,0.6))",
             }}
           />
         </div>
@@ -60,16 +60,16 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         className="mb-6"
       >
         <h1 className="text-5xl md:text-7xl font-black leading-tight mb-2">
-          <span className="gradient-text emerald-text-glow">ميثاق</span>
+          <span className="gradient-text cyan-text-glow">ميثاق</span>
           <span className="text-foreground/30 mx-4 font-thin">|</span>
           <span className="gradient-text">MITHAQ AI</span>
         </h1>
         <div className="flex items-center justify-center gap-2 mt-3">
-          <div className="h-px w-16 bg-gradient-to-r from-transparent to-emerald-400/50" />
-          <span className="text-emerald-400/60 text-xs tracking-[0.3em] uppercase font-medium">
+          <div className="h-px w-16 bg-gradient-to-r from-transparent to-cyan-400/50" />
+          <span className="text-cyan-400/60 text-xs tracking-[0.3em] uppercase font-medium">
             Saudi Labor Law 2025
           </span>
-          <div className="h-px w-16 bg-gradient-to-l from-transparent to-emerald-400/50" />
+          <div className="h-px w-16 bg-gradient-to-l from-transparent to-cyan-400/50" />
         </div>
       </motion.div>
 
@@ -80,7 +80,8 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         transition={{ duration: 0.7, delay: 0.3 }}
         className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-12 font-medium"
       >
-        منظومة هندسة قانونية تعيد تصميم العقود وسعودتها لضمان الامتثال النظامي والجاهزية الاستثمارية في المملكة
+        منظومة وكلاء ذكية لمراجعة العقود وضمان الامتثال وفق نظام العمل السعودي
+        2025
       </motion.p>
 
       {/* CTA Button */}
@@ -94,13 +95,13 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
           className="group relative px-10 py-4 text-lg font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
           style={{
             background:
-              "linear-gradient(135deg, hsl(145, 85%, 45%) 0%, hsl(145, 85%, 38%) 100%)",
+              "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
             color: "hsl(222, 47%, 8%)",
             boxShadow:
-              "0 0 30px rgba(0, 200, 83, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+              "0 0 30px rgba(0, 220, 220, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
           }}
         >
-          <span className="relative z-10">ابدأ هندسة العقد</span>
+          <span className="relative z-10">ابدأ فحص العقد</span>
           <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300" />
         </button>
       </motion.div>
@@ -117,7 +118,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-4 h-4 border-l-2 border-b-2 border-emerald-400/40 rotate-[-45deg]"
+          className="w-4 h-4 border-l-2 border-b-2 border-cyan-400/40 rotate-[-45deg]"
         />
       </motion.div>
     </section>

@@ -43,7 +43,7 @@ function ScoreCircle({ score, label, delay }: { score: number; label: string; de
             cy="40"
             r="36"
             fill="none"
-            stroke="url(#emeraldGrad)"
+            stroke="url(#cyanGrad)"
             strokeWidth="6"
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -52,9 +52,9 @@ function ScoreCircle({ score, label, delay }: { score: number; label: string; de
             transition={{ duration: 1.2, delay: delay + 0.2, ease: "easeOut" }}
           />
           <defs>
-            <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(145, 85%, 45%)" />
-              <stop offset="100%" stopColor="hsl(145, 85%, 38%)" />
+            <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(186, 95%, 55%)" />
+              <stop offset="100%" stopColor="hsl(199, 89%, 48%)" />
             </linearGradient>
           </defs>
         </svg>
@@ -626,7 +626,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-border bg-card p-8 mb-8 emerald-glow"
+          className="rounded-2xl border border-border bg-card p-8 mb-8 cyan-glow"
         >
           <h3 className="text-center text-sm font-bold uppercase tracking-wider text-muted-foreground mb-8">
             مؤشر الامتثال
@@ -642,7 +642,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col items-center gap-2"
             >
-              <div className="text-2xl text-emerald-400">←</div>
+              <div className="text-2xl text-cyan-400">←</div>
               <span className="text-xs text-muted-foreground">تحسن</span>
               <div
                 className="text-lg font-black"
@@ -711,7 +711,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                       </td>
                       <td className="px-6 py-5 text-foreground/70 leading-relaxed">{row.suggestedText}</td>
                       <td className="px-6 py-5">
-                        <span className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                           {row.legalRef}
                         </span>
                       </td>
@@ -741,7 +741,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                     </span>
                   </div>
                   <p className="text-muted-foreground text-sm">{row.suggestedText}</p>
-                  <span className="inline-block text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg">
+                  <span className="inline-block text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-3 py-1 rounded-lg">
                     {row.legalRef}
                   </span>
                 </motion.div>
@@ -772,7 +772,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
 
           <button
             onClick={handleDownloadRevised}
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-sm border border-emerald-500/30 text-emerald-400 bg-emerald-500/5 transition-all duration-300 hover:bg-emerald-500/10 hover:scale-105"
+            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-sm border border-cyan-500/30 text-cyan-400 bg-cyan-500/5 transition-all duration-300 hover:bg-cyan-500/10 hover:scale-105"
           >
             <span>📄</span>
             تحميل العقد المعدل

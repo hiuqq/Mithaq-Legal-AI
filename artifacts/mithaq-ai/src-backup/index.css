@@ -78,7 +78,7 @@
   --foreground: 195 100% 94%;
   --border: 220 30% 18%;
   --input: 220 30% 22%;
-  --ring: 145 85% 45%;
+  --ring: 186 95% 55%;
 
   --card: 222 42% 11%;
   --card-foreground: 195 100% 92%;
@@ -91,13 +91,13 @@
   --sidebar: 222 47% 7%;
   --sidebar-foreground: 195 100% 92%;
   --sidebar-border: 220 28% 16%;
-  --sidebar-primary: 145 85% 45%;
+  --sidebar-primary: 186 95% 55%;
   --sidebar-primary-foreground: 222 47% 8%;
   --sidebar-accent: 222 42% 14%;
   --sidebar-accent-foreground: 195 100% 92%;
-  --sidebar-ring: 145 85% 45%;
+  --sidebar-ring: 186 95% 55%;
 
-  --primary: 145 85% 45%;
+  --primary: 186 95% 55%;
   --primary-foreground: 222 47% 8%;
 
   --secondary: 222 42% 16%;
@@ -106,15 +106,15 @@
   --muted: 222 35% 14%;
   --muted-foreground: 220 20% 55%;
 
-  --accent: 145 85% 45%;
+  --accent: 186 95% 55%;
   --accent-foreground: 222 47% 8%;
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --chart-1: 145 85% 45%;
-  --chart-2: 145 85% 38%;
-  --chart-3: 145 80% 45%;
+  --chart-1: 186 95% 55%;
+  --chart-2: 199 89% 48%;
+  --chart-3: 170 80% 45%;
   --chart-4: 215 70% 60%;
   --chart-5: 160 65% 50%;
 
@@ -223,16 +223,16 @@
     inset: -1px;
   }
 
-  .emerald-glow {
-    box-shadow: 0 0 20px rgba(0, 200, 83, 0.15), 0 0 40px rgba(0, 200, 83, 0.08);
+  .cyan-glow {
+    box-shadow: 0 0 20px rgba(0, 220, 220, 0.15), 0 0 40px rgba(0, 220, 220, 0.08);
   }
 
-  .emerald-glow-strong {
-    box-shadow: 0 0 30px rgba(0, 200, 83, 0.3), 0 0 60px rgba(0, 200, 83, 0.15);
+  .cyan-glow-strong {
+    box-shadow: 0 0 30px rgba(0, 220, 220, 0.3), 0 0 60px rgba(0, 220, 220, 0.15);
   }
 
-  .emerald-text-glow {
-    text-shadow: 0 0 20px rgba(0, 200, 83, 0.6);
+  .cyan-text-glow {
+    text-shadow: 0 0 20px rgba(0, 220, 220, 0.6);
   }
 
   .card-hover {
@@ -241,13 +241,13 @@
 
   .card-hover:hover {
     transform: translateY(-4px);
-    border-color: hsl(145, 85%, 45%, 0.5);
-    box-shadow: 0 0 20px rgba(0, 200, 83, 0.15), 0 12px 24px rgba(0, 0, 0, 0.4);
+    border-color: hsl(186, 95%, 55%, 0.5);
+    box-shadow: 0 0 20px rgba(0, 220, 220, 0.15), 0 12px 24px rgba(0, 0, 0, 0.4);
   }
 
-  @keyframes pulse-emerald {
-    0%, 100% { box-shadow: 0 0 10px rgba(0, 200, 83, 0.2); }
-    50% { box-shadow: 0 0 25px rgba(0, 200, 83, 0.5); }
+  @keyframes pulse-cyan {
+    0%, 100% { box-shadow: 0 0 10px rgba(0, 220, 220, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(0, 220, 220, 0.5); }
   }
 
   @keyframes shimmer {
@@ -271,12 +271,12 @@
     animation: float 4s ease-in-out infinite;
   }
 
-  .animate-pulse-emerald {
-    animation: pulse-emerald 2s ease-in-out infinite;
+  .animate-pulse-cyan {
+    animation: pulse-cyan 2s ease-in-out infinite;
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, hsl(145, 85%, 65%) 0%, hsl(145, 85%, 55%) 50%, hsl(145, 85%, 45%) 100%);
+    background: linear-gradient(135deg, hsl(186, 95%, 70%) 0%, hsl(195, 89%, 60%) 50%, hsl(186, 95%, 55%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -284,8 +284,8 @@
 
   .bg-grid-pattern {
     background-image:
-      linear-gradient(rgba(0, 200, 83, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 200, 83, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(0, 220, 220, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 220, 220, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 }

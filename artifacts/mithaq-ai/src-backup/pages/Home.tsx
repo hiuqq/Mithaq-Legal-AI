@@ -47,15 +47,15 @@ export default function Home() {
               />
             </div>
             <span className="font-black text-foreground text-lg tracking-tight">
-              ميثاق <span className="text-emerald-400">AI</span>
+              ميثاق <span className="text-cyan-400">AI</span>
             </span>
           </div>
 
           {/* Nav links */}
           <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#upload" className="hover:text-emerald-400 transition-colors">رفع العقد</a>
-            <a href="#agents" className="hover:text-emerald-400 transition-colors">الوكلاء</a>
-            <a href="#architecture" className="hover:text-emerald-400 transition-colors">المعمارية</a>
+            <a href="#upload" className="hover:text-cyan-400 transition-colors">رفع العقد</a>
+            <a href="#agents" className="hover:text-cyan-400 transition-colors">الوكلاء</a>
+            <a href="#architecture" className="hover:text-cyan-400 transition-colors">المعمارية</a>
           </nav>
 
           {/* CTA */}
@@ -115,7 +115,7 @@ export default function Home() {
                 style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,210,230,0.5))" }}
               />
             </div>
-            <span className="font-black text-foreground">ميثاق <span className="text-emerald-400">AI</span></span>
+            <span className="font-black text-foreground">ميثاق <span className="text-cyan-400">AI</span></span>
           </div>
           <p className="text-muted-foreground text-sm">
             منظومة وكلاء ذكية لمراجعة العقود وفق نظام العمل السعودي 2025

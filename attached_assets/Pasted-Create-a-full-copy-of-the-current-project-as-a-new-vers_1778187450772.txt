@@ -1,0 +1,52 @@
+Create a full copy of the current project as a new version.
+
+Steps:
+1. Duplicate all files in src/ to a new folder called src-backup/
+   so the original dark navy + cyan design is preserved.
+
+2. Then make these changes to the CURRENT src/ files:
+
+COLORS - Update CSS variables or Tailwind colors:
+- Primary accent: change from cyan (#00D1FF) to emerald green (#00C853)
+- Buttons: change from cyan gradient to green gradient
+- Borders and glows: change from cyan to green
+- Keep the dark navy background exactly as is (#0B1F3A)
+
+CONTENT - Update text only:
+- Hero subtitle: "منظومة هندسة قانونية تعيد تصميم العقود وسعودتها لضمان الامتثال النظامي والجاهزية الاستثمارية في المملكة"
+- Hero CTA button: "ابدأ هندسة العقد"
+- Upload section title: "ابدأ الهندسة القانونية"
+- Upload subtitle: "ارفع عقدك بصيغة PDF وسيتولى فريق الوكلاء هندسته وسعودته وتقييم جاهزيته الاستثمارية"
+
+AGENTS - Update names and descriptions:
+Agent 1:
+- name: "المحلل القانوني"
+- nameEn: "LEGAL ANALYST AGENT"
+- description: "يحلل بنود العقد ويكتشف المخالفات النظامية ويقيّم مدى توافقها مع الأنظمة واللوائح السعودية المعتمدة."
+
+Agent 2:
+- name: "مهندس الصياغة السعودية"
+- nameEn: "SAUDI DRAFTING ENGINEER"
+- description: "يعيد هندسة العقد بصياغات قانونية سعودية محلية تحمي حقوق الطرفين وتتوافق مع بيئة الأعمال المحلية."
+
+Agent 3:
+- name: "محلل المخاطر المالية"
+- nameEn: "FINANCIAL RISK ANALYST"
+- description: "يقدّر الغرامات والتعويضات والتبعات المالية المحتملة لكل بند مخالف ويحدد مخاطر الاستثمار."
+
+Agent 4:
+- name: "الدرع القضائي"
+- nameEn: "JUDICIAL SHIELD AGENT"
+- description: "يراجع جاهزية العقد للتقاضي ويصدر تقرير الجاهزية الاستثمارية الشامل مع السند النظامي لكل توصية."
+
+ANALYSIS STEPS - Update:
+1. "المشرف يستلم العقد"
+2. "المحلل القانوني يفحص البنود"
+3. "مهندس الصياغة يعيد الهندسة"
+4. "الدرع القضائي يصدر تقرير الجاهزية"
+
+ARCHITECTURE section subtitle:
+"تدفق آلي ومتسلسل من رفع العقد حتى إصدار تقرير الجاهزية الاستثمارية النهائي"
+
+Do not change any layout, spacing, or component structure.
+Only change colors and text content as listed above.

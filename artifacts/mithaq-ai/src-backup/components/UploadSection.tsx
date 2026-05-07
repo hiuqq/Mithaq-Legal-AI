@@ -81,15 +81,15 @@ export function UploadSection({ onResults }: UploadSectionProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-sm font-medium mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-sm font-medium mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
             رفع العقد
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
-            ابدأ الهندسة القانونية
+            ابدأ التحليل
           </h2>
           <p className="text-muted-foreground text-lg">
-            ارفع عقدك بصيغة PDF وسيتولى فريق الوكلاء هندسته وسعودته وتقييم جاهزيته الاستثمارية
+            ارفع عقد العمل بصيغة PDF وسيتولى فريق الوكلاء مراجعته فورًا
           </p>
         </motion.div>
 
@@ -107,10 +107,10 @@ export function UploadSection({ onResults }: UploadSectionProps) {
             relative rounded-2xl border-2 border-dashed p-14 text-center cursor-pointer
             transition-all duration-300
             ${dragOver
-              ? "border-emerald-400 bg-emerald-400/5"
+              ? "border-cyan-400 bg-cyan-400/5"
               : uploadState === "ready"
-              ? "border-emerald-500/50 bg-emerald-500/5"
-              : "border-border hover:border-emerald-500/40 hover:bg-emerald-500/3"
+              ? "border-cyan-500/50 bg-cyan-500/5"
+              : "border-border hover:border-cyan-500/40 hover:bg-cyan-500/3"
             }
             ${uploadState === "analyzing" ? "pointer-events-none" : ""}
           `}
@@ -154,11 +154,11 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                 exit={{ opacity: 0 }}
                 className="flex flex-col items-center gap-3"
               >
-                <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-3xl">
+                <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-3xl">
                   ✅
                 </div>
                 <div>
-                  <p className="text-emerald-400 font-bold">{selectedFile?.name}</p>
+                  <p className="text-cyan-400 font-bold">{selectedFile?.name}</p>
                   <p className="text-muted-foreground text-sm mt-1">
                     {selectedFile ? (selectedFile.size / 1024).toFixed(1) : 0} KB
                   </p>
@@ -196,7 +196,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
               className="mt-8 rounded-2xl border border-border bg-card overflow-hidden"
             >
               <div className="p-6">
-                <h3 className="font-bold text-foreground mb-5 text-sm uppercase tracking-wider text-emerald-400/80">
+                <h3 className="font-bold text-foreground mb-5 text-sm uppercase tracking-wider text-cyan-400/80">
                   مراحل التحليل
                 </h3>
                 <div className="space-y-4">
@@ -216,9 +216,9 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                           className={`
                             w-9 h-9 rounded-xl flex items-center justify-center text-sm flex-shrink-0 transition-all duration-500
                             ${isCompleted
-                              ? "bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
+                              ? "bg-cyan-500/20 border border-cyan-500/40 text-cyan-400"
                               : isActive
-                              ? "bg-emerald-500/10 border border-emerald-400/50 animate-pulse-emerald"
+                              ? "bg-cyan-500/10 border border-cyan-400/50 animate-pulse-cyan"
                               : "bg-muted/30 border border-border/50 opacity-40"
                             }
                           `}
@@ -231,7 +231,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                           <p
                             className={`font-medium text-sm transition-colors duration-300 ${
                               isCompleted
-                                ? "text-emerald-400"
+                                ? "text-cyan-400"
                                 : isActive
                                 ? "text-foreground"
                                 : "text-muted-foreground/50"
@@ -242,7 +242,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                           {isActive && (
                             <div className="mt-1.5 h-1 rounded-full bg-muted/30 overflow-hidden">
                               <motion.div
-                                className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-blue-400"
+                                className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-400"
                                 initial={{ width: "0%" }}
                                 animate={{ width: "100%" }}
                                 transition={{ duration: 1.2, ease: "easeInOut" }}
@@ -255,7 +255,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                         <div
                           className={`text-xs font-medium px-2 py-0.5 rounded-full transition-all duration-300 ${
                             isCompleted
-                              ? "text-emerald-400 bg-emerald-500/10 border border-emerald-500/20"
+                              ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/20"
                               : isActive
                               ? "text-amber-400 bg-amber-500/10 border border-amber-500/20"
                               : "text-transparent bg-transparent border border-transparent"

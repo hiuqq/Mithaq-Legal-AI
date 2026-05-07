@@ -13,8 +13,8 @@ export function AgentsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-sm font-medium mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-sm font-medium mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
             الوكلاء الذكيون
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
@@ -26,7 +26,7 @@ export function AgentsSection() {
         </motion.div>
 
         {/* Agent cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {AGENTS.map((agent, index) => (
             <motion.div
               key={agent.id}
@@ -46,7 +46,7 @@ export function AgentsSection() {
 
               {/* Corner accent */}
               <div className="absolute top-0 left-0 w-20 h-20 overflow-hidden rounded-tl-2xl">
-                <div className="absolute -top-10 -left-10 w-20 h-20 bg-emerald-400/10 rounded-full" />
+                <div className="absolute -top-10 -left-10 w-20 h-20 bg-cyan-400/10 rounded-full" />
               </div>
 
               <div className="relative z-10">
@@ -57,7 +57,7 @@ export function AgentsSection() {
 
                 {/* Name */}
                 <h3 className="text-xl font-bold text-foreground mb-1">{agent.name}</h3>
-                <span className="text-xs text-emerald-400/60 font-medium tracking-wider uppercase mb-4 block">
+                <span className="text-xs text-cyan-400/60 font-medium tracking-wider uppercase mb-4 block">
                   {agent.nameEn}
                 </span>
 
@@ -68,8 +68,8 @@ export function AgentsSection() {
 
                 {/* Status indicator */}
                 <div className="mt-6 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs text-emerald-400/70 font-medium">نشط • جاهز للتحليل</span>
+                  <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <span className="text-xs text-cyan-400/70 font-medium">نشط • جاهز للتحليل</span>
                 </div>
               </div>
             </motion.div>
