@@ -3,6 +3,7 @@ import { ComplianceReport } from "@/data/mockData";
 
 interface ResultsSectionProps {
   report: ComplianceReport;
+  analysisTime: number;
 }
 
 const STATUS_COLORS: Record<string, { text: string; bg: string; border: string }> = {
@@ -66,7 +67,7 @@ function ScoreCircle({ score, label, delay }: { score: number; label: string; de
   );
 }
 
-export function ResultsSection({ report }: ResultsSectionProps) {
+export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
   const handleDownloadReport = () => {
     // TODO: Connect to real PDF generation API
     // await fetch('/api/contracts/report/download', { method: 'GET' });
@@ -107,6 +108,25 @@ export function ResultsSection({ report }: ResultsSectionProps) {
             تم اكتشاف المخالفات وتقديم الصياغات البديلة المتوافقة مع النظام
           </p>
         </div>
+
+        {/* Stats row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="flex items-center justify-center gap-8 md:gap-16 mb-12"
+        >
+          {[
+            { value: "٤", label: "وكلاء ذكيين" },
+            { value: `${report.scoreAfter}٪`, label: "دقة الامتثال" },
+            { value: `${analysisTime}ث`, label: "وقت التحليل" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-2xl font-black gradient-text">{stat.value}</div>
+              <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
 
         {/* Score comparison */}
         <motion.div

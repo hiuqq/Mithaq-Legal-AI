@@ -21,12 +21,12 @@ export function AgentsSection() {
             منظومة الوكلاء
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            ثلاثة وكلاء متخصصون يعملون بالتوازي لضمان أعلى مستويات الامتثال القانوني
+            أربعة وكلاء متخصصون يعملون بالتوازي لضمان أعلى مستويات الامتثال القانوني
           </p>
         </motion.div>
 
         {/* Agent cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {AGENTS.map((agent, index) => (
             <motion.div
               key={agent.id}

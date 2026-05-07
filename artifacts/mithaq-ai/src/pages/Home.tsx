@@ -9,6 +9,7 @@ import { ComplianceReport } from "@/data/mockData";
 
 export default function Home() {
   const [report, setReport] = useState<ComplianceReport | null>(null);
+  const [analysisTime, setAnalysisTime] = useState<number>(0);
   const uploadRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -16,8 +17,9 @@ export default function Home() {
     uploadRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleResults = (r: ComplianceReport) => {
+  const handleResults = (r: ComplianceReport, t: number) => {
     setReport(r);
+    setAnalysisTime(t);
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 400);
@@ -94,7 +96,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
             >
-              <ResultsSection report={report} />
+              <ResultsSection report={report} analysisTime={analysisTime} />
             </motion.div>
           )}
         </AnimatePresence>

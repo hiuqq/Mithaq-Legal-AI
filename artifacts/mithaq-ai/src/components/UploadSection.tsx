@@ -5,7 +5,7 @@ import { ANALYSIS_STEPS } from "@/data/mockData";
 import { ComplianceReport } from "@/data/mockData";
 
 interface UploadSectionProps {
-  onResults: (report: ComplianceReport) => void;
+  onResults: (report: ComplianceReport, timeSeconds: number) => void;
 }
 
 type UploadState = "idle" | "ready" | "analyzing" | "done";
@@ -45,6 +45,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
     setUploadState("analyzing");
     setCurrentStep(0);
     setCompletedSteps([]);
+    const startTime = Date.now();
 
     // Animate through steps
     for (let i = 0; i < ANALYSIS_STEPS.length; i++) {
@@ -56,8 +57,9 @@ export function UploadSection({ onResults }: UploadSectionProps) {
     // Call the (mock) analyzeContract function
     // TODO: Pass the actual file to the real API when backend is ready
     const report = await analyzeContract(selectedFile);
+    const timeSeconds = Math.round((Date.now() - startTime) / 1000);
     setUploadState("done");
-    onResults(report);
+    onResults(report, timeSeconds);
   };
 
   return (

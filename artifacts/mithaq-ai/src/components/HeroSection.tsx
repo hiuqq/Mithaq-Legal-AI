@@ -106,28 +106,6 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         </button>
       </motion.div>
 
-      {/* Stats row */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.6 }}
-        className="mt-16 flex items-center gap-8 md:gap-16"
-      >
-        {[
-          { value: "٣", label: "وكلاء ذكيين" },
-          { value: "٩٦٪", label: "دقة الامتثال" },
-          { value: "٣٠ث", label: "وقت التحليل" },
-        ].map((stat) => (
-          <div key={stat.label} className="text-center">
-            <div className="text-2xl font-black gradient-text">
-              {stat.value}
-            </div>
-            <div className="text-xs text-muted-foreground mt-1">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div

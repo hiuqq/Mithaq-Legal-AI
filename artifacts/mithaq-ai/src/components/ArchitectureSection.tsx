@@ -114,12 +114,13 @@ export function ArchitectureSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4"
+          className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
         >
           {[
             { icon: "⚡", title: "معالجة فورية", desc: "تحليل بنود العقد في ثوانٍ باستخدام الذكاء الاصطناعي" },
             { icon: "🔒", title: "امتثال كامل", desc: "مقارنة دقيقة مع نظام العمل السعودي 2025" },
             { icon: "📋", title: "تقارير احترافية", desc: "تقرير شامل مع المقترحات والسند القانوني" },
+            { icon: "🔒", title: "تشفير تام", desc: "يتم تشفير بيانات العقد فور رفعه ولا يتم تخزين المعلومات الشخصية بعد انتهاء المعالجة" },
           ].map((card) => (
             <div
               key={card.title}
