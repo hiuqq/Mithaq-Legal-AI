@@ -5,7 +5,7 @@ import { ANALYSIS_STEPS } from "@/data/mockData";
 import { ComplianceReport } from "@/data/mockData";
 
 interface UploadSectionProps {
-  onResults: (report: ComplianceReport, timeSeconds: number) => void;
+  onResults: (report: ComplianceReport | null, timeSeconds: number) => void;
 }
 
 type UploadState = "idle" | "ready" | "analyzing" | "done";
@@ -38,6 +38,14 @@ export function UploadSection({ onResults }: UploadSectionProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) handleFile(file);
+  };
+
+  const resetAnalysis = () => {
+    setUploadState("idle");
+    setSelectedFile(null);
+    setCurrentStep(0);
+    setCompletedSteps([]);
+    onResults(null, 0);
   };
 
   const runAnalysis = async () => {
@@ -283,6 +291,26 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                 }}
               >
                 تحليل العقد
+              </button>
+            </motion.div>
+          )}
+          {uploadState === "done" && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="mt-6 text-center"
+            >
+              <button
+                onClick={resetAnalysis}
+                className="px-12 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                style={{
+                  background: "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
+                  color: "hsl(222, 47%, 8%)",
+                  boxShadow: "0 0 30px rgba(0, 220, 220, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+                }}
+              >
+                تحليل عقد جديد 🔄
               </button>
             </motion.div>
           )}

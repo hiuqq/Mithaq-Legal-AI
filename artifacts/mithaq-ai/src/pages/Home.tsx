@@ -17,12 +17,14 @@ export default function Home() {
     uploadRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleResults = (r: ComplianceReport, t: number) => {
+  const handleResults = (r: ComplianceReport | null, t: number) => {
     setReport(r);
     setAnalysisTime(t);
-    setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+    if (r) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
   };
 
   return (
