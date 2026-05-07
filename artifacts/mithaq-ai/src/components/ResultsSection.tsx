@@ -69,9 +69,211 @@ function ScoreCircle({ score, label, delay }: { score: number; label: string; de
 
 export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
   const handleDownloadReport = () => {
-    // TODO: Connect to real PDF generation API
-    // await fetch('/api/contracts/report/download', { method: 'GET' });
-    alert("سيتم ربط هذا الزر بخدمة توليد التقارير لاحقًا");
+    const date = new Date().toLocaleDateString("ar-SA", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const statusColor = (status: string) => {
+      if (status === "مخالف") return "#f87171";
+      if (status === "يحتاج تحسين") return "#fbbf24";
+      return "#34d399";
+    };
+
+    const rowsHtml = report.rows
+      .map(
+        (row) => `
+        <tr>
+          <td>${row.originalClause}</td>
+          <td><span class="badge" style="background:${statusColor(row.status)}22;color:${statusColor(row.status)};border:1px solid ${statusColor(row.status)}44">${row.status}</span></td>
+          <td>${row.suggestedText}</td>
+          <td><span class="ref">${row.legalRef}</span></td>
+        </tr>`
+      )
+      .join("");
+
+    const html = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تقرير الامتثال - ميثاق AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background: #0d1526;
+      color: #e2e8f0;
+      padding: 40px 32px;
+      direction: rtl;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e3a5f;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .brand { font-size: 28px; font-weight: 900; color: #00d4e8; }
+    .brand span { color: #e2e8f0; }
+    .date { font-size: 13px; color: #64748b; }
+    .subtitle { font-size: 13px; color: #64748b; margin-top: 4px; }
+    .scores {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .score-card {
+      flex: 1;
+      background: #111d35;
+      border: 1px solid #1e3a5f;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .score-value {
+      font-size: 48px;
+      font-weight: 900;
+      color: #00d4e8;
+    }
+    .score-label { font-size: 13px; color: #64748b; margin-top: 8px; }
+    .improvement {
+      flex: 0.5;
+      background: #111d35;
+      border: 1px solid #1e3a5f;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .improvement-value {
+      font-size: 32px;
+      font-weight: 900;
+      color: #34d399;
+    }
+    .improvement-label { font-size: 13px; color: #64748b; margin-top: 8px; }
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #00d4e8;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #111d35;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #1e3a5f;
+    }
+    thead tr { background: #0d1a2e; }
+    th {
+      text-align: right;
+      padding: 14px 20px;
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #1e3a5f;
+    }
+    td {
+      padding: 16px 20px;
+      font-size: 14px;
+      color: #cbd5e1;
+      border-bottom: 1px solid #1a2d48;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    tr:last-child td { border-bottom: none; }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .ref {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #00d4e81a;
+      color: #00d4e8;
+      border: 1px solid #00d4e833;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 12px;
+      color: #334155;
+      border-top: 1px solid #1e3a5f;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="brand"><span>ميثاق </span>AI</div>
+      <div class="subtitle">منظومة وكلاء ذكية لمراجعة العقود وفق نظام العمل السعودي 2025</div>
+    </div>
+    <div style="text-align:left">
+      <div class="date">تاريخ التحليل: ${date}</div>
+      <div class="date" style="margin-top:4px">الحالة: ${report.statusLabel}</div>
+    </div>
+  </div>
+
+  <div class="scores">
+    <div class="score-card">
+      <div class="score-value">${report.scoreBefore}٪</div>
+      <div class="score-label">درجة الامتثال قبل التحسين</div>
+    </div>
+    <div class="improvement">
+      <div class="improvement-value">+${report.scoreAfter - report.scoreBefore}٪</div>
+      <div class="improvement-label">نسبة التحسين</div>
+    </div>
+    <div class="score-card">
+      <div class="score-value">${report.scoreAfter}٪</div>
+      <div class="score-label">درجة الامتثال بعد التحسين</div>
+    </div>
+  </div>
+
+  <div class="section-title">تفاصيل البنود</div>
+  <table>
+    <thead>
+      <tr>
+        <th>البند الأصلي</th>
+        <th>الحالة</th>
+        <th>الصياغة المقترحة</th>
+        <th>السند القانوني</th>
+      </tr>
+    </thead>
+    <tbody>${rowsHtml}</tbody>
+  </table>
+
+  <div class="footer">
+    تقرير صادر عن ميثاق AI • نسخة تجريبية — Hackathon Demo v1.0
+  </div>
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `mithaq-compliance-report-${Date.now()}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const handleDownloadRevised = () => {
