@@ -85,7 +85,7 @@ export const AGENTS = [
     name: "وكيل المراقبة المستمرة",
     nameEn: "Continuous Compliance Agent",
     description: "يراقب التحديثات التنظيمية الجديدة ويعيد فتح العقود المتأثرة تلقائيًا لضمان الامتثال المستمر.",
-    icon: "🛡️",
+    icon: "👁️",
     color: "from-indigo-500/20 to-purple-600/10",
     borderColor: "border-indigo-400/30",
     glowColor: "rgba(99, 102, 241, 0.15)",
@@ -98,6 +98,6 @@ export const ARCHITECTURE_NODES = [
   { label: "وكيل التدقيق", icon: "🔍" },
   { label: "وكيل الصياغة", icon: "✍️" },
   { label: "وكيل الإشراف", icon: "📊" },
-  { label: "وكيل المراقبة", icon: "🛡️" },
+  { label: "وكيل المراقبة", icon: "👁️" },
   { label: "تقرير الامتثال", icon: "✅" },
 ];
