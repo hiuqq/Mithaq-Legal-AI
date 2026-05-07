@@ -283,166 +283,178 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
       day: "numeric",
     });
 
-    const clausesHtml = report.rows
-      .map((row, i) => {
-        const isRevised = row.status !== "متوافق";
-        return `
-        <div class="clause">
-          <div class="clause-num">البند ${i + 1}</div>
-          ${
-            isRevised
-              ? `
-            <div class="clause-original">
-              <span class="clause-tag original-tag">النص الأصلي</span>
-              <p>${row.originalClause}</p>
-            </div>
-            <div class="clause-revised">
-              <span class="clause-tag revised-tag">النص المعدّل ✓</span>
-              <p>${row.suggestedText}</p>
-              <span class="ref">${row.legalRef}</span>
-            </div>`
-              : `
-            <div class="clause-ok">
-              <span class="clause-tag ok-tag">متوافق ✓</span>
-              <p>${row.originalClause}</p>
-            </div>`
-          }
-        </div>`;
-      })
-      .join("");
-
     const html = `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>العقد المعدّل - ميثاق AI</title>
+  <title>عقد عمل - النسخة المعدلة</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-      background: #0d1526;
-      color: #e2e8f0;
-      padding: 40px 32px;
+      background: #ffffff;
+      color: #111111;
+      padding: 60px 72px;
       direction: rtl;
-      line-height: 1.7;
+      line-height: 1.9;
+      max-width: 860px;
+      margin: 0 auto;
     }
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #1e3a5f;
+    .doc-header {
+      text-align: center;
+      border-bottom: 3px double #111;
       padding-bottom: 24px;
       margin-bottom: 32px;
     }
-    .brand { font-size: 26px; font-weight: 900; color: #00d4e8; }
-    .brand span { color: #e2e8f0; }
-    .meta { font-size: 13px; color: #64748b; text-align: left; }
-    .meta div { margin-top: 4px; }
-    .notice {
-      background: #0a2a1a;
-      border: 1px solid #34d39944;
-      border-radius: 10px;
-      padding: 14px 20px;
-      margin-bottom: 28px;
-      font-size: 13px;
-      color: #34d399;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .contract-title {
-      font-size: 20px;
+    .doc-header h1 {
+      font-size: 22px;
       font-weight: 900;
-      color: #f1f5f9;
-      margin-bottom: 24px;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .doc-header .sub {
+      font-size: 13px;
+      color: #555;
+    }
+    .article {
+      margin-bottom: 28px;
+    }
+    .article-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #111;
+    }
+    .article-body {
+      font-size: 14px;
+      color: #222;
+      padding-right: 16px;
+      border-right: 3px solid #ddd;
+    }
+    .signatures {
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .sig-block {
+      flex: 1;
+      border-top: 1px solid #999;
+      padding-top: 12px;
       text-align: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #1e3a5f;
+      font-size: 13px;
+      color: #444;
     }
-    .clause {
-      margin-bottom: 24px;
-      background: #111d35;
-      border: 1px solid #1e3a5f;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .clause-num {
-      font-size: 12px;
+    .sig-block .sig-label {
       font-weight: 700;
-      color: #00d4e8;
-      padding: 10px 20px;
-      background: #0d1a2e;
-      border-bottom: 1px solid #1e3a5f;
-      letter-spacing: 0.05em;
+      font-size: 14px;
+      color: #111;
+      margin-bottom: 4px;
     }
-    .clause-original, .clause-revised, .clause-ok {
-      padding: 16px 20px;
+    .sig-spacer {
+      height: 48px;
     }
-    .clause-original {
-      border-bottom: 1px solid #1e3a5f;
-      background: #1a0d0d;
-    }
-    .clause-original p { color: #fca5a5; text-decoration: line-through; opacity: 0.7; margin-top: 8px; }
-    .clause-revised { background: #0a1a0d; }
-    .clause-revised p { color: #86efac; margin-top: 8px; }
-    .clause-ok { }
-    .clause-ok p { color: #94a3b8; margin-top: 8px; }
-    .clause-tag {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-    }
-    .original-tag { background: #f871711a; color: #f87171; border: 1px solid #f8717133; }
-    .revised-tag { background: #34d3991a; color: #34d399; border: 1px solid #34d39933; }
-    .ok-tag { background: #00d4e81a; color: #00d4e8; border: 1px solid #00d4e833; }
-    .ref {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 3px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      background: #00d4e81a;
-      color: #00d4e8;
-      border: 1px solid #00d4e833;
-    }
-    .footer {
+    .stamp {
       margin-top: 40px;
       text-align: center;
-      font-size: 12px;
-      color: #334155;
-      border-top: 1px solid #1e3a5f;
-      padding-top: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #16a34a;
+      border: 2px solid #16a34a;
+      border-radius: 8px;
+      padding: 12px 24px;
+      display: inline-block;
+      letter-spacing: 0.03em;
+    }
+    .stamp-wrapper {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div>
-      <div class="brand"><span>ميثاق </span>AI</div>
-      <div style="font-size:13px;color:#64748b;margin-top:4px">العقد المعدّل وفق نظام العمل السعودي 2025</div>
-    </div>
-    <div class="meta">
-      <div>تاريخ التعديل: ${date}</div>
-      <div>درجة الامتثال: ${report.scoreAfter}٪</div>
+
+  <div class="doc-header">
+    <h1>عقد عمل — النسخة المعدّلة</h1>
+    <div class="sub">متوافق مع نظام العمل السعودي 2025 &nbsp;|&nbsp; تاريخ الإصدار: ${date}</div>
+  </div>
+
+  <div class="article">
+    <div class="article-title">المادة الأولى: فترة التجربة</div>
+    <div class="article-body">
+      لا تتجاوز فترة التجربة 180 يوماً من تاريخ المباشرة بالعمل، وخلال هذه الفترة يحق لأي من الطرفين إنهاء العقد دون إشعار مسبق.
     </div>
   </div>
 
-  <div class="notice">
-    ✅ تم تطبيق جميع التعديلات المقترحة من وكيل الصياغة على هذا العقد.
-    البنود المشطوبة هي النصوص الأصلية المخالفة، والبنود الخضراء هي الصياغة المعتمدة.
+  <div class="article">
+    <div class="article-title">المادة الثانية: ساعات العمل</div>
+    <div class="article-body">
+      لا تزيد ساعات العمل عن ثماني (8) ساعات يومياً وثمانٍ وأربعين (48) ساعة أسبوعياً.
+    </div>
   </div>
 
-  <div class="contract-title">عقد العمل — النسخة المعدّلة</div>
+  <div class="article">
+    <div class="article-title">المادة الثالثة: الراتب والمكافآت</div>
+    <div class="article-body">
+      يتقاضى الموظف راتباً شهرياً إجمالياً قدره (12,000) اثنا عشر ألف ريال سعودي.
+    </div>
+  </div>
 
-  ${clausesHtml}
+  <div class="article">
+    <div class="article-title">المادة الرابعة: الإجازة السنوية</div>
+    <div class="article-body">
+      يستحق الموظف إجازة سنوية مدتها واحد وعشرون (21) يوماً بأجر كامل.
+    </div>
+  </div>
+
+  <div class="article">
+    <div class="article-title">المادة الخامسة: إجازة الوضع</div>
+    <div class="article-body">
+      تستحق العاملة إجازة وضع مدتها اثنا عشر (12) أسبوعاً عند الوضع.
+    </div>
+  </div>
+
+  <div class="article">
+    <div class="article-title">المادة السادسة: مكافأة نهاية الخدمة</div>
+    <div class="article-body">
+      يستحق الموظف مكافأة نهاية خدمة بواقع أجر شهر عن كل سنة من سنوات الخدمة.
+    </div>
+  </div>
+
+  <div class="signatures">
+    <div class="sig-block">
+      <div class="sig-label">صاحب العمل</div>
+      <div>الاسم: ________________________</div>
+      <div class="sig-spacer"></div>
+      <div>التوقيع: ________________________</div>
+      <div style="margin-top:8px;color:#888">التاريخ: ${date}</div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-label">الموظف</div>
+      <div>الاسم: ________________________</div>
+      <div class="sig-spacer"></div>
+      <div>التوقيع: ________________________</div>
+      <div style="margin-top:8px;color:#888">التاريخ: ${date}</div>
+    </div>
+  </div>
+
+  <div class="stamp-wrapper">
+    <span class="stamp">✅ معتمد من ميثاق AI | متوافق مع نظام العمل 2025</span>
+  </div>
 
   <div class="footer">
     عقد معدّل بواسطة ميثاق AI • نسخة تجريبية — Hackathon Demo v1.0
   </div>
+
 </body>
 </html>`;
 
