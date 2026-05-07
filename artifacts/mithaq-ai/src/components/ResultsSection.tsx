@@ -285,13 +285,6 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
             تحميل العقد المعدل
           </button>
 
-          <button
-            onClick={handleSendForReview}
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-sm border border-border text-muted-foreground bg-card transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-400 hover:scale-105"
-          >
-            <span>📨</span>
-            إرسال للمراجعة
-          </button>
         </motion.div>
       </div>
     </motion.section>

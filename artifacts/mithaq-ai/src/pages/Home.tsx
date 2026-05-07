@@ -22,7 +22,7 @@ export default function Home() {
     setAnalysisTime(t);
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 400);
+    }, 100);
   };
 
   return (
