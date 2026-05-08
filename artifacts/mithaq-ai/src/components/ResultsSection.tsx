@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ComplianceReport } from "@/data/mockData";
 
 interface ResultsSectionProps {
@@ -63,6 +64,54 @@ function ScoreCircle({ score, label, delay }: { score: number; label: string; de
         </div>
       </div>
       <span className="text-sm text-muted-foreground font-medium">{label}</span>
+    </motion.div>
+  );
+}
+
+function AgentSummaryPanel({ summary }: { summary: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+      className="rounded-2xl border border-border bg-card overflow-hidden mb-8"
+    >
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="w-full p-5 flex items-center justify-between text-right hover:bg-muted/10 transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-base">🤖</span>
+          <span className="font-bold text-foreground text-sm">تفاصيل تحليل الوكلاء</span>
+        </div>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="text-muted-foreground text-xs"
+        >
+          ▼
+        </motion.span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="summary"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden"
+          >
+            <div className="px-6 pb-6 border-t border-border/50">
+              <pre className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed font-sans">
+                {summary}
+              </pre>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -792,6 +841,11 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
             })}
           </div>
         </motion.div>
+
+        {/* Agent summary collapsible — only shown when source is langflow */}
+        {report.source === "langflow" && report.agentSummary && (
+          <AgentSummaryPanel summary={report.agentSummary} />
+        )}
 
         {/* Action buttons */}
         <motion.div
