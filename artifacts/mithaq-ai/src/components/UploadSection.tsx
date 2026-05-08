@@ -285,9 +285,9 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                 onClick={runAnalysis}
                 className="px-12 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
                 style={{
-                  background: "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
+                  background: "linear-gradient(135deg, hsl(158, 100%, 33%) 0%, hsl(158, 100%, 28%) 100%)",
                   color: "hsl(222, 47%, 8%)",
-                  boxShadow: "0 0 30px rgba(0, 220, 220, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+                  boxShadow: "0 0 30px rgba(0, 168, 107, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
                 }}
               >
                 تحليل العقد
@@ -305,9 +305,9 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                 onClick={resetAnalysis}
                 className="px-12 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
                 style={{
-                  background: "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
+                  background: "linear-gradient(135deg, hsl(158, 100%, 33%) 0%, hsl(158, 100%, 28%) 100%)",
                   color: "hsl(222, 47%, 8%)",
-                  boxShadow: "0 0 30px rgba(0, 220, 220, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+                  boxShadow: "0 0 30px rgba(0, 168, 107, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
                 }}
               >
                 تحليل عقد جديد 🔄

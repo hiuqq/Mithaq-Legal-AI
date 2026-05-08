@@ -858,9 +858,9 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
             onClick={handleDownloadReport}
             className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-105"
             style={{
-              background: "linear-gradient(135deg, hsl(186, 95%, 55%) 0%, hsl(199, 89%, 48%) 100%)",
+              background: "linear-gradient(135deg, hsl(158, 100%, 33%) 0%, hsl(158, 100%, 28%) 100%)",
               color: "hsl(222, 47%, 8%)",
-              boxShadow: "0 0 20px rgba(0, 220, 220, 0.25)",
+              boxShadow: "0 0 20px rgba(0, 168, 107, 0.25)",
             }}
           >
             <span>📥</span>
