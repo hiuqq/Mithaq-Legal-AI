@@ -611,7 +611,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
         >
           {[
             { value: "٤", label: "وكلاء ذكيين" },
-            { value: `${report.scoreAfter}٪`, label: "دقة الامتثال" },
+            { value: `${report.scoreAfter}٪`, label: "جاهزية الاستثمار" },
             { value: `${analysisTime}ث`, label: "وقت التحليل" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
@@ -664,6 +664,22 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           </div>
         </motion.div>
 
+        {/* Financial risk summary card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-6 mb-6 flex items-center gap-5"
+          style={{ boxShadow: "0 0 20px rgba(245, 158, 11, 0.1)" }}
+        >
+          <div className="text-4xl flex-shrink-0">⚠️</div>
+          <div className="flex-1 min-w-0">
+            <p className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">إجمالي المخاطر المالية المحتملة</p>
+            <p className="text-3xl font-black text-amber-300">45,000 ريال</p>
+            <p className="text-amber-400/60 text-sm mt-1">قابلة للتلافي بعد هندسة العقد</p>
+          </div>
+        </motion.div>
+
         {/* Compliance table */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -687,6 +703,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                   <th className="text-right px-6 py-4 font-bold text-muted-foreground text-xs uppercase tracking-wider">الحالة</th>
                   <th className="text-right px-6 py-4 font-bold text-muted-foreground text-xs uppercase tracking-wider">الصياغة المقترحة</th>
                   <th className="text-right px-6 py-4 font-bold text-muted-foreground text-xs uppercase tracking-wider">السند القانوني</th>
+                  <th className="text-right px-6 py-4 font-bold text-amber-400/80 text-xs uppercase tracking-wider">التكلفة التقديرية</th>
                 </tr>
               </thead>
               <tbody>
@@ -713,6 +730,11 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                       <td className="px-6 py-5">
                         <span className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                           {row.legalRef}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5">
+                        <span className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                          {row.financialRisk}
                         </span>
                       </td>
                     </motion.tr>
@@ -743,6 +765,9 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                   <p className="text-muted-foreground text-sm">{row.suggestedText}</p>
                   <span className="inline-block text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-lg">
                     {row.legalRef}
+                  </span>
+                  <span className="inline-block text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1 rounded-lg">
+                    {row.financialRisk}
                   </span>
                 </motion.div>
               );

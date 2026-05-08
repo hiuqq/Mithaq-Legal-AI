@@ -7,6 +7,7 @@ export interface ComplianceRow {
   status: "مخالف" | "يحتاج تحسين" | "متوافق";
   suggestedText: string;
   legalRef: string;
+  financialRisk: string;
 }
 
 export interface ComplianceReport {
@@ -26,18 +27,28 @@ export const MOCK_COMPLIANCE_REPORT: ComplianceReport = {
       status: "مخالف",
       suggestedText: "لا تتجاوز فترة التجربة 180 يومًا",
       legalRef: "المادة 53",
+      financialRisk: "حتى 10,000 ريال",
     },
     {
       originalClause: "إجازة الوضع 10 أسابيع",
       status: "مخالف",
       suggestedText: "تستحق العاملة إجازة وضع مدتها 12 أسبوعًا",
       legalRef: "المادة 151",
+      financialRisk: "حتى 15,000 ريال",
     },
     {
       originalClause: "ساعات العمل 10 ساعات",
       status: "يحتاج تحسين",
       suggestedText: "لا تزيد ساعات العمل عن 8 ساعات يوميًا",
       legalRef: "المادة 98",
+      financialRisk: "حتى 8,000 ريال",
+    },
+    {
+      originalClause: "الإجازة السنوية 15 يومًا",
+      status: "يحتاج تحسين",
+      suggestedText: "تستحق الإجازة السنوية 21 يومًا بعد سنة خدمة",
+      legalRef: "المادة 109",
+      financialRisk: "حتى 12,000 ريال",
     },
   ],
 };
