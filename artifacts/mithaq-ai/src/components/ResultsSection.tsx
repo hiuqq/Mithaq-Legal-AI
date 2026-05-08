@@ -696,9 +696,20 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
         >
           <div className="p-6 border-b border-border flex items-center justify-between">
             <h3 className="font-bold text-foreground">تفاصيل البنود</h3>
-            <span className="text-xs text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50">
-              {report.rows.length} بنود مراجعة
-            </span>
+            <div className="flex items-center gap-2">
+              {report.source === "langflow" ? (
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+                  🤖 LangFlow Live
+                </span>
+              ) : (
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full border border-border/50 bg-muted/20 text-muted-foreground">
+                  📋 Demo Mode
+                </span>
+              )}
+              <span className="text-xs text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50">
+                {report.rows.length} بنود مراجعة
+              </span>
+            </div>
           </div>
 
           {/* Desktop table */}

@@ -15,6 +15,8 @@ export interface ComplianceReport {
   scoreAfter: number;
   statusLabel: string;
   rows: ComplianceRow[];
+  source?: "langflow" | "mock";
+  agentSummary?: string;
 }
 
 export const MOCK_COMPLIANCE_REPORT: ComplianceReport = {
