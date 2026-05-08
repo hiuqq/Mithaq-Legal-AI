@@ -1,6 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 import { supabase } from "../lib/supabase.js";
+import { analyzeContractWithLangflow } from "../lib/langflow.js";
 
 const router = Router();
 const upload = multer({
@@ -137,38 +138,15 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
       contractId = contractData.id as string;
     }
 
-    // 2. Call LangFlow (30-second timeout)
-    const langflowUrl = "https://expensive-volatile-breeching.ngrok-free.dev/api/v1/run/c633b0b1-9d7c-487d-97f9-569358f664d0";
-
+    // 2. Call LangFlow (90-second timeout, multipart file upload)
     let agentOutput = "";
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30_000);
-
-      const langflowResponse = await fetch(langflowUrl, {
-        method: "POST",
-        signal: controller.signal,
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": process.env.LANGFLOW_API_KEY ?? "",
-        },
-        body: JSON.stringify({
-          input_type: "chat",
-          output_type: "chat",
-          input_value: req.file
-            ? req.file.buffer.toString("base64")
-            : "analyze this contract",
-        }),
-      });
-
-      clearTimeout(timeoutId);
-
-      const langflowData = await langflowResponse.json() as {
-        outputs?: { outputs?: { results?: { message?: { text?: string } } }[] }[];
-      };
-
-      agentOutput =
-        langflowData?.outputs?.[0]?.outputs?.[0]?.results?.message?.text ?? "";
+      if (req.file) {
+        agentOutput = await analyzeContractWithLangflow(
+          req.file.buffer,
+          req.file.originalname
+        );
+      }
     } catch {
       // Timeout or network error — agentOutput stays "" and we fall back to mock
     }
