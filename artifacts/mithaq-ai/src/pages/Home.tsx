@@ -31,7 +31,7 @@ export default function Home() {
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Header / Navbar */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center relative">
           {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
 
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
+          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground absolute left-1/2 -translate-x-1/2">
             <a href="#upload" className="hover:text-emerald-400 transition-colors">رفع العقد</a>
             <a href="#agents" className="hover:text-emerald-400 transition-colors">الوكلاء</a>
             <a href="#architecture" className="hover:text-emerald-400 transition-colors">المعمارية</a>
