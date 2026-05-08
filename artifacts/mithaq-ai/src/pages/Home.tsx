@@ -58,17 +58,6 @@ export default function Home() {
             <a href="#architecture" className="hover:text-emerald-400 transition-colors">المعمارية</a>
           </nav>
 
-          {/* CTA */}
-          <button
-            onClick={scrollToUpload}
-            className="text-sm font-bold px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, hsl(158, 100%, 33%) 0%, hsl(158, 100%, 28%) 100%)",
-              color: "hsl(222, 47%, 8%)",
-            }}
-          >
-            ابدأ الآن
-          </button>
         </div>
       </header>
 
