@@ -46,6 +46,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
     setCurrentStep(0);
     setCompletedSteps([]);
     onResults(null, 0);
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const runAnalysis = async () => {
