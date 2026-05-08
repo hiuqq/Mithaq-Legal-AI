@@ -675,7 +675,14 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           <div className="text-4xl flex-shrink-0">⚠️</div>
           <div className="flex-1 min-w-0">
             <p className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">إجمالي المخاطر المالية المحتملة</p>
-            <p className="text-3xl font-black text-amber-300">45,000 ريال</p>
+            <p className="text-3xl font-black text-amber-300">
+              {report.rows
+                .reduce((sum, row) => {
+                  const match = row.financialRisk.replace(/,/g, "").match(/[\d]+/);
+                  return sum + (match ? parseInt(match[0], 10) : 0);
+                }, 0)
+                .toLocaleString("ar-SA")} ريال
+            </p>
             <p className="text-amber-400/60 text-sm mt-1">قابلة للتلافي بعد هندسة العقد</p>
           </div>
         </motion.div>
