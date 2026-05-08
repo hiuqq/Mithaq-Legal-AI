@@ -678,7 +678,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
             <p className="text-3xl font-black text-amber-300">
               {report.rows
                 .reduce((sum, row) => {
-                  const match = row.financialRisk.replace(/,/g, "").match(/[\d]+/);
+                  const match = (row.financialRisk ?? "").replace(/,/g, "").match(/[\d]+/);
                   return sum + (match ? parseInt(match[0], 10) : 0);
                 }, 0)
                 .toLocaleString("ar-SA")} ريال
