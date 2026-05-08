@@ -137,30 +137,41 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
       contractId = contractData.id as string;
     }
 
-    // 2. Call LangFlow
+    // 2. Call LangFlow (30-second timeout)
     const langflowUrl = "https://expensive-volatile-breeching.ngrok-free.dev/api/v1/run/c633b0b1-9d7c-487d-97f9-569358f664d0";
 
-    const langflowResponse = await fetch(langflowUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.LANGFLOW_API_KEY ?? "",
-      },
-      body: JSON.stringify({
-        input_type: "chat",
-        output_type: "chat",
-        input_value: req.file
-          ? req.file.buffer.toString("base64")
-          : "analyze this contract",
-      }),
-    });
+    let agentOutput = "";
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30_000);
 
-    const langflowData = await langflowResponse.json() as {
-      outputs?: { outputs?: { results?: { message?: { text?: string } } }[] }[];
-    };
+      const langflowResponse = await fetch(langflowUrl, {
+        method: "POST",
+        signal: controller.signal,
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": process.env.LANGFLOW_API_KEY ?? "",
+        },
+        body: JSON.stringify({
+          input_type: "chat",
+          output_type: "chat",
+          input_value: req.file
+            ? req.file.buffer.toString("base64")
+            : "analyze this contract",
+        }),
+      });
 
-    const agentOutput =
-      langflowData?.outputs?.[0]?.outputs?.[0]?.results?.message?.text ?? "";
+      clearTimeout(timeoutId);
+
+      const langflowData = await langflowResponse.json() as {
+        outputs?: { outputs?: { results?: { message?: { text?: string } } }[] }[];
+      };
+
+      agentOutput =
+        langflowData?.outputs?.[0]?.outputs?.[0]?.results?.message?.text ?? "";
+    } catch {
+      // Timeout or network error — agentOutput stays "" and we fall back to mock
+    }
 
     const parsedRows = parseAgentOutput(agentOutput);
     const rows = parsedRows ?? MOCK_ROWS;
