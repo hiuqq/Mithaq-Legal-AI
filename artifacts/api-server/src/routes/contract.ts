@@ -1,5 +1,6 @@
 import { Router } from "express";
 import multer from "multer";
+import { supabase } from "../lib/supabase.js";
 
 const router = Router();
 const upload = multer({
@@ -38,7 +39,6 @@ function isValidRow(r: unknown): r is ComplianceRow {
 function parseAgentOutput(text: string): ComplianceRow[] | null {
   if (!text || text.trim() === "") return null;
 
-  // 1. Try to find a JSON array in the text (inside ```json ... ``` or bare)
   const jsonPatterns = [
     /```json\s*([\s\S]*?)\s*```/i,
     /```\s*([\s\S]*?)\s*```/i,
@@ -62,13 +62,10 @@ function parseAgentOutput(text: string): ComplianceRow[] | null {
             .filter(isValidRow);
           if (rows.length > 0) return rows;
         }
-      } catch {
-        // continue to next pattern
-      }
+      } catch { /* continue */ }
     }
   }
 
-  // 2. Try parsing the whole text as JSON
   try {
     const parsed = JSON.parse(text.trim());
     const arr = Array.isArray(parsed) ? parsed : parsed?.rows ?? parsed?.data;
@@ -84,9 +81,7 @@ function parseAgentOutput(text: string): ComplianceRow[] | null {
         .filter(isValidRow);
       if (rows.length > 0) return rows;
     }
-  } catch {
-    // fall through
-  }
+  } catch { /* fall through */ }
 
   return null;
 }
@@ -123,7 +118,26 @@ const MOCK_ROWS: ComplianceRow[] = [
 ];
 
 router.post("/analyze-contract", upload.single("file"), async (req, res) => {
+  let contractId: string | null = null;
+
   try {
+    // 1. Save the uploaded contract to Supabase
+    const filename = req.file?.originalname ?? "unknown.pdf";
+    const { data: contractData, error: contractError } = await supabase
+      .from("contracts")
+      .insert({
+        filename,
+        status: "processing",
+        created_at: new Date().toISOString(),
+      })
+      .select("id")
+      .single();
+
+    if (!contractError && contractData) {
+      contractId = contractData.id as string;
+    }
+
+    // 2. Call LangFlow
     const langflowUrl = "https://expensive-volatile-breeching.ngrok-free.dev/api/v1/run/c633b0b1-9d7c-487d-97f9-569358f664d0";
 
     const langflowResponse = await fetch(langflowUrl, {
@@ -150,18 +164,80 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
 
     const parsedRows = parseAgentOutput(agentOutput);
     const rows = parsedRows ?? MOCK_ROWS;
+    const source = parsedRows ? "langflow" : "mock";
 
-    const report = {
-      scoreBefore: 62,
-      scoreAfter: 96,
-      statusLabel: "محسّن",
-      rows,
-      agentSummary: agentOutput,
-      source: parsedRows ? "langflow" : "mock",
-    };
+    const scoreBefore = 62;
+    const scoreAfter = 96;
+    const statusLabel = "محسّن";
 
-    res.json({ success: true, report });
+    // 3. Save workflow result to Supabase
+    let workflowResultId: string | null = null;
+    const { data: workflowData, error: workflowError } = await supabase
+      .from("workflow_results")
+      .insert({
+        contract_id: contractId,
+        agent_summary: agentOutput,
+        score_before: scoreBefore,
+        score_after: scoreAfter,
+        status_label: statusLabel,
+        source,
+        created_at: new Date().toISOString(),
+      })
+      .select("id")
+      .single();
+
+    if (!workflowError && workflowData) {
+      workflowResultId = workflowData.id as string;
+    }
+
+    // 4. Save individual audit items to Supabase
+    if (workflowResultId) {
+      await supabase.from("contract_audit_items").insert(
+        rows.map((row) => ({
+          workflow_result_id: workflowResultId,
+          contract_id: contractId,
+          original_clause: row.originalClause,
+          status: row.status,
+          suggested_text: row.suggestedText,
+          legal_ref: row.legalRef,
+          financial_risk: row.financialRisk,
+          created_at: new Date().toISOString(),
+        }))
+      );
+    }
+
+    // 5. Mark contract as completed
+    if (contractId) {
+      await supabase
+        .from("contracts")
+        .update({ status: "completed" })
+        .eq("id", contractId);
+    }
+
+    res.json({
+      success: true,
+      report: {
+        scoreBefore,
+        scoreAfter,
+        statusLabel,
+        rows,
+        agentSummary: agentOutput,
+        source,
+        contractId,
+        workflowResultId,
+      },
+    });
   } catch (error) {
+    // Mark contract as failed if it was created
+    if (contractId) {
+      await supabase
+        .from("contracts")
+        .update({ status: "failed" })
+        .eq("id", contractId)
+        .catch(() => {});
+    }
+
+    // Fall back to mock so the frontend never crashes
     res.json({
       success: true,
       report: {
@@ -171,6 +247,8 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
         rows: MOCK_ROWS,
         agentSummary: "",
         source: "mock",
+        contractId,
+        workflowResultId: null,
       },
     });
   }
