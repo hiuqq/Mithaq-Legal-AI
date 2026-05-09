@@ -265,6 +265,15 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.50), 0 0 20px rgba(0, 168, 107, 0.12);
   }
 
+  @keyframes scan-line {
+    0%   { top: -4px; }
+    100% { top: 100%; }
+  }
+
+  .animate-scan-line {
+    animation: scan-line 4s linear infinite;
+  }
+
   @keyframes pulse-cyan {
     0%, 100% { opacity: 1; }
     50%       { opacity: 0.45; }

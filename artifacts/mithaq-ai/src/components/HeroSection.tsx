@@ -22,6 +22,17 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
           className="absolute bottom-0 left-0 right-0 h-40"
           style={{ background: "linear-gradient(to bottom, transparent, #0B1F3A)" }}
         />
+        {/* Animated scan line */}
+        <div className="animate-scan-line absolute left-0 right-0 pointer-events-none" style={{ height: 2 }}>
+          <div
+            style={{
+              width: "100%",
+              height: "2px",
+              background: "linear-gradient(90deg, transparent 0%, rgba(0,168,107,0.0) 10%, rgba(0,168,107,0.6) 40%, rgba(52,211,153,0.9) 50%, rgba(0,168,107,0.6) 60%, rgba(0,168,107,0.0) 90%, transparent 100%)",
+              boxShadow: "0 0 12px 3px rgba(0,168,107,0.35), 0 0 30px 8px rgba(0,168,107,0.12)",
+            }}
+          />
+        </div>
       </div>
 
       {/* Logo area */}
