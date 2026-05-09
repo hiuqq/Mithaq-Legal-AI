@@ -31,16 +31,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         transition={{ duration: 0.6 }}
         className="relative mb-8"
       >
-        <div
-          className="mx-auto flex items-center justify-center animate-float rounded-3xl p-4"
-          style={{
-            width: 160,
-            height: 160,
-            background: "rgba(0,168,107,0.12)",
-            border: "1px solid rgba(0,168,107,0.25)",
-            boxShadow: "0 0 40px rgba(0,168,107,0.15)",
-          }}
-        >
+        <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 160, height: 160 }}>
           <img
             src="/logo.png"
             alt="Mithaq AI"
@@ -129,9 +120,6 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         >
           <span className="relative z-10">ابدأ هندسة العقد</span>
         </button>
-        <span className="text-sm font-medium" style={{ color: "#4A6A8A" }}>
-          مجاني للنسخة التجريبية
-        </span>
       </motion.div>
 
       {/* Stats row */}

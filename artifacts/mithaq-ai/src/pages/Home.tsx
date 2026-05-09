@@ -79,19 +79,6 @@ export default function Home() {
             ))}
           </nav>
 
-          {/* CTA */}
-          <button
-            onClick={scrollToUpload}
-            className="text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-200 hover:scale-105 text-white"
-            style={{
-              background: "#00A86B",
-              boxShadow: "0 4px 18px rgba(0,168,107,0.35)",
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#008558"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#00A86B"; }}
-          >
-            ابدأ الآن
-          </button>
         </div>
       </header>
 
