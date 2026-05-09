@@ -40,7 +40,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative mb-8"
+        className="relative mb-8 mt-12"
       >
         <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 160, height: 160 }}>
           <img
@@ -138,24 +138,24 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
-        className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 pt-10"
-        style={{ borderTop: "1px solid rgba(0,168,107,0.15)" }}
+        className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 pt-8"
+        style={{ borderTop: "1px solid rgba(0,168,107,0.20)" }}
       >
         <div className="flex flex-col items-center">
           <span className="text-2xl font-bold gradient-text">100%</span>
-          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#4A6A8A" }}>Compliance</span>
+          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#7A9BBF" }}>Compliance</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-2xl font-bold gradient-text">2025</span>
-          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#4A6A8A" }}>Legal Tech</span>
+          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#7A9BBF" }}>Legal Tech</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-2xl font-bold gradient-text">Vision</span>
-          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#4A6A8A" }}>2030 Ready</span>
+          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#7A9BBF" }}>2030 Ready</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-2xl font-bold gradient-text">Saudi</span>
-          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#4A6A8A" }}>Engineered</span>
+          <span className="text-[10px] uppercase tracking-widest font-bold mt-1" style={{ color: "#7A9BBF" }}>Engineered</span>
         </div>
       </motion.div>
     </section>
