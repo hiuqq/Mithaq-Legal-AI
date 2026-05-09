@@ -70,3 +70,8 @@ externalPort = 8000
 [[ports]]
 localPort = 20294
 externalPort = 80
+
+[userenv]
+
+[userenv.shared]
+LANGFLOW_DEBUG = "true"

@@ -1,10 +1,19 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import FormData from "form-data";
+import { logger } from "./logger.js";
+
+const DEBUG = process.env.LANGFLOW_DEBUG === "true";
 
 const NGROK_HEADERS = {
   "ngrok-skip-browser-warning": "true",
   Authorization: `Bearer ${process.env.LANGFLOW_TOKEN}`,
 };
+
+function dbg(label: string, data: unknown) {
+  if (DEBUG) {
+    logger.info({ langflow: label, data }, `[LangFlow Debug] ${label}`);
+  }
+}
 
 export const analyzeContractWithLangflow = async (
   fileBuffer: Buffer,
@@ -13,6 +22,8 @@ export const analyzeContractWithLangflow = async (
   const baseUrl = process.env.LANGFLOW_API_URL;
   const flowId = process.env.FLOW_ID;
 
+  dbg("config", { baseUrl, flowId, fileName, fileSizeBytes: fileBuffer.length });
+
   // ── Step 1: Upload the PDF file ──────────────────────────────────────────
   const formData = new FormData();
   formData.append("file", fileBuffer, {
@@ -20,41 +31,73 @@ export const analyzeContractWithLangflow = async (
     contentType: "application/pdf",
   });
 
-  const uploadResponse = await axios.post(
-    `${baseUrl}/api/v1/files/upload/${flowId}`,
-    formData,
-    {
+  const uploadUrl = `${baseUrl}/api/v1/files/upload/${flowId}`;
+  dbg("step1:upload:request", { url: uploadUrl });
+
+  let uploadResponse;
+  try {
+    uploadResponse = await axios.post(uploadUrl, formData, {
       headers: {
         ...formData.getHeaders(),
         ...NGROK_HEADERS,
       },
       timeout: 30_000,
-    }
-  );
+    });
+  } catch (err) {
+    const axiosErr = err as AxiosError;
+    dbg("step1:upload:error", {
+      status: axiosErr.response?.status,
+      data: axiosErr.response?.data,
+      message: axiosErr.message,
+    });
+    throw err;
+  }
 
   const filePath: string = uploadResponse.data.file_path;
+  dbg("step1:upload:response", { status: uploadResponse.status, filePath });
 
   // ── Step 2: Run the flow with the uploaded file in tweaks ─────────────────
-  const runResponse = await axios.post(
-    `${baseUrl}/api/v1/run/${flowId}?stream=false`,
-    {
-      input_value: "Please analyze the attached contract.",
-      input_type: "chat",
-      output_type: "chat",
-      tweaks: {
-        "ChatInput-ccXwZ": {
-          files: [filePath],
-        },
+  const runUrl = `${baseUrl}/api/v1/run/${flowId}?stream=false`;
+  const runPayload = {
+    input_value: "Please analyze the attached contract.",
+    input_type: "chat",
+    output_type: "chat",
+    tweaks: {
+      "ChatInput-ccXwZ": {
+        files: [filePath],
       },
     },
-    {
+  };
+
+  dbg("step2:run:request", { url: runUrl, payload: runPayload });
+
+  let runResponse;
+  try {
+    runResponse = await axios.post(runUrl, runPayload, {
       headers: {
         "Content-Type": "application/json",
         ...NGROK_HEADERS,
       },
       timeout: 90_000,
-    }
-  );
+    });
+  } catch (err) {
+    const axiosErr = err as AxiosError;
+    dbg("step2:run:error", {
+      status: axiosErr.response?.status,
+      data: axiosErr.response?.data,
+      message: axiosErr.message,
+    });
+    throw err;
+  }
 
-  return runResponse.data.outputs[0].outputs[0].results.message.text as string;
+  const outputText =
+    runResponse.data.outputs[0].outputs[0].results.message.text as string;
+
+  dbg("step2:run:response", {
+    status: runResponse.status,
+    outputLength: outputText.length,
+    outputPreview: outputText.slice(0, 300),
+  });
+
+  return outputText;
 };
