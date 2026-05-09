@@ -19,7 +19,7 @@ export const analyzeContractWithLangflow = async (
   fileBuffer: Buffer,
   fileName: string
 ): Promise<string> => {
-  const baseUrl = process.env.LANGFLOW_API_URL;
+  const baseUrl = process.env.LANGFLOW_API_URL ?? "http://127.0.0.1:7860";
   const flowId = process.env.FLOW_ID;
 
   dbg("config", { baseUrl, flowId, fileName, fileSizeBytes: fileBuffer.length });
@@ -64,6 +64,7 @@ export const analyzeContractWithLangflow = async (
     output_type: "chat",
     tweaks: {
       "ChatInput-ccXwZ": {
+        input_value: "Please analyze this contract",
         files: [filePath],
       },
     },
@@ -78,7 +79,7 @@ export const analyzeContractWithLangflow = async (
         "Content-Type": "application/json",
         ...NGROK_HEADERS,
       },
-      timeout: 90_000,
+      timeout: 120_000,
     });
   } catch (err) {
     const axiosErr = err as AxiosError;
