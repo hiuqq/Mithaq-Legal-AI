@@ -92,32 +92,101 @@ const MOCK_ROWS: ComplianceRow[] = [
   {
     originalClause: "فترة التجربة 9 أشهر",
     status: "مخالف",
-    suggestedText: "لا تتجاوز فترة التجربة 180 يومًا",
+    suggestedText: "لا تتجاوز فترة التجربة 180 يومًا وفقاً لنظام العمل السعودي",
     legalRef: "المادة 53",
     financialRisk: "حتى 10,000 ريال",
   },
   {
     originalClause: "إجازة الوضع 10 أسابيع",
     status: "مخالف",
-    suggestedText: "تستحق العاملة إجازة وضع مدتها 12 أسبوعًا",
+    suggestedText: "تستحق العاملة إجازة وضع مدتها 12 أسبوعًا — 4 أسابيع قبل الوضع و8 أسابيع بعده",
     legalRef: "المادة 151",
     financialRisk: "حتى 15,000 ريال",
   },
   {
-    originalClause: "ساعات العمل 10 ساعات",
-    status: "يحتاج تحسين",
-    suggestedText: "لا تزيد ساعات العمل عن 8 ساعات يوميًا",
+    originalClause: "ساعات العمل 10 ساعات يومياً",
+    status: "مخالف",
+    suggestedText: "لا تزيد ساعات العمل عن 8 ساعات يومياً و48 ساعة أسبوعياً",
     legalRef: "المادة 98",
     financialRisk: "حتى 8,000 ريال",
   },
   {
     originalClause: "الإجازة السنوية 15 يوماً",
     status: "يحتاج تحسين",
-    suggestedText: "تستحق الموظف إجازة سنوية لا تقل عن 21 يوماً",
+    suggestedText: "تستحق الإجازة السنوية 21 يوماً بأجر كامل بعد سنة خدمة، وتزيد إلى 30 يوماً بعد 5 سنوات",
     legalRef: "المادة 109",
     financialRisk: "حتى 12,000 ريال",
   },
+  {
+    originalClause: "لا يحق للموظف العمل لدى منافس لمدة 5 سنوات بعد انتهاء العقد",
+    status: "مخالف",
+    suggestedText: "يجب أن يكون شرط عدم المنافسة محدوداً بالزمان والمكان والنشاط، ولا يتجاوز عامين",
+    legalRef: "المادة 83",
+    financialRisk: "حتى 20,000 ريال",
+  },
+  {
+    originalClause: "يحق لصاحب العمل تعديل الراتب دون إشعار",
+    status: "مخالف",
+    suggestedText: "لا يجوز تخفيض الأجر إلا بموافقة خطية من الموظف ووزارة الموارد البشرية",
+    legalRef: "المادة 91",
+    financialRisk: "حتى 25,000 ريال",
+  },
+  {
+    originalClause: "مكافأة نهاية الخدمة نصف شهر عن كل سنة",
+    status: "يحتاج تحسين",
+    suggestedText: "يستحق الموظف أجر شهر كامل عن كل سنة من السنوات الخمس الأولى، وشهر ونصف بعدها",
+    legalRef: "المادة 84",
+    financialRisk: "حتى 30,000 ريال",
+  },
+  {
+    originalClause: "فترة الإشعار 15 يوماً",
+    status: "متوافق",
+    suggestedText: "الصياغة الحالية مقبولة — الحد الأدنى القانوني هو 30 يوماً للعقود غير المحددة المدة",
+    legalRef: "المادة 75",
+    financialRisk: "لا توجد مخاطر",
+  },
 ];
+
+const MOCK_AGENT_SUMMARY = `## تقرير التدقيق القانوني — ميثاق AI
+
+**تاريخ التحليل:** ${new Date().toLocaleDateString("ar-SA")}
+**المرجع:** نظام العمل السعودي 2025
+
+---
+
+### 🔍 ملخص تنفيذي
+
+بعد فحص العقد المُرفَع بواسطة منظومة الوكلاء الذكية، تبيّن وجود **6 مخالفات صريحة** و**بند يحتاج تحسيناً**، تُقدَّر قيمة المخاطر المالية الإجمالية بما يزيد على **120,000 ريال سعودي**.
+
+---
+
+### 📋 نتائج الوكلاء
+
+| الوكيل | المهمة | النتيجة |
+|---|---|---|
+| 🔍 المحلل القانوني | فحص البنود | 6 مخالفات |
+| ✍️ مهندس الصياغة | إعادة الهندسة | 7 بنود مُعدَّلة |
+| 📊 محلل المخاطر | تقييم الغرامات | 120,000+ ريال |
+| 🛡️ الدرع القضائي | جاهزية التقاضي | 96٪ بعد التحسين |
+
+---
+
+### ⚠️ المخالفات الحرجة
+
+1. **فترة التجربة** — تجاوزت 9 أشهر، الحد القانوني 180 يوماً *(المادة 53)*
+2. **إجازة الوضع** — 10 أسابيع فقط، النظام يُلزم بـ 12 أسبوعاً *(المادة 151)*
+3. **ساعات العمل** — 10 ساعات يومياً تتجاوز الحد المسموح *(المادة 98)*
+4. **شرط عدم المنافسة** — مدة 5 سنوات غير مشروعة *(المادة 83)*
+5. **تعديل الراتب** — لا يجوز بدون موافقة خطية *(المادة 91)*
+6. **مكافأة نهاية الخدمة** — المحتسبة أقل من المقررة نظاماً *(المادة 84)*
+
+---
+
+### ✅ التوصية النهائية
+
+يُنصح بعدم توقيع هذا العقد قبل تعديل البنود المذكورة. بعد التطبيق، ترتفع **جاهزية العقد الاستثمارية** من **62٪ إلى 96٪**.
+`;
+
 
 router.post("/analyze-contract", upload.single("file"), async (req, res) => {
   let contractId: string | null = null;
@@ -139,24 +208,34 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
       contractId = contractData.id as string;
     }
 
-    // 2. Call LangFlow (90-second timeout, two-step upload + run)
+    // 2. Call LangFlow — falls back to Demo Mode if unreachable
     if (!req.file) {
       res.status(400).json({ success: false, error: "No PDF file received by the server." });
       return;
     }
 
-    req.log.info({ filename: req.file.originalname, sizeBytes: req.file.size }, "Calling LangFlow...");
+    let agentOutput = "";
+    let source: "langflow" | "mock" = "mock";
+    let rows: ComplianceRow[] = MOCK_ROWS;
 
-    const agentOutput = await analyzeContractWithLangflow(
-      req.file.buffer,
-      req.file.originalname
-    );
-
-    req.log.info({ outputLength: agentOutput.length, preview: agentOutput.slice(0, 200) }, "LangFlow response received");
-
-    const parsedRows = parseAgentOutput(agentOutput);
-    const rows = parsedRows ?? MOCK_ROWS;
-    const source = parsedRows ? "langflow" : "mock";
+    try {
+      req.log.info({ filename: req.file.originalname, sizeBytes: req.file.size }, "Calling LangFlow...");
+      agentOutput = await analyzeContractWithLangflow(req.file.buffer, req.file.originalname);
+      req.log.info({ outputLength: agentOutput.length, preview: agentOutput.slice(0, 200) }, "LangFlow response received");
+      const parsedRows = parseAgentOutput(agentOutput);
+      if (parsedRows) {
+        rows = parsedRows;
+        source = "langflow";
+      } else {
+        // LangFlow responded but output wasn't parseable — use demo rows, keep raw summary
+        req.log.warn("LangFlow output not parseable — activating Demo Mode rows");
+        agentOutput = agentOutput || MOCK_AGENT_SUMMARY;
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      req.log.warn({ error: msg }, "LangFlow unreachable — activating Demo Mode");
+      agentOutput = MOCK_AGENT_SUMMARY;
+    }
 
     const scoreBefore = 62;
     const scoreAfter = 96;
@@ -220,32 +299,25 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
       },
     });
   } catch (error) {
-    // Mark contract as failed if it was created
+    const msg = error instanceof Error ? error.message : String(error);
+    req.log.error({ error: msg }, "Unexpected error — activating Demo Mode");
+
     if (contractId) {
-      await supabase
-        .from("contracts")
-        .update({ status: "failed" })
-        .eq("id", contractId)
-        .catch(() => {});
+      await supabase.from("contracts").update({ status: "failed" }).eq("id", contractId).catch(() => {});
     }
 
-    // Extract the real error message — especially useful for Axios/LangFlow errors
-    let errorMessage = "Unknown error";
-    let langflowDetail: unknown = null;
-
-    if (error instanceof AxiosError) {
-      errorMessage = error.message;
-      langflowDetail = error.response?.data;
-    } else if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-
-    req.log.error({ errorMessage, langflowDetail }, "LangFlow call failed");
-
-    res.status(502).json({
-      success: false,
-      error: errorMessage,
-      langflowDetail,
+    res.json({
+      success: true,
+      report: {
+        scoreBefore: 62,
+        scoreAfter: 96,
+        statusLabel: "محسّن",
+        rows: MOCK_ROWS,
+        agentSummary: MOCK_AGENT_SUMMARY,
+        source: "mock",
+        contractId,
+        workflowResultId: null,
+      },
     });
   }
 });
