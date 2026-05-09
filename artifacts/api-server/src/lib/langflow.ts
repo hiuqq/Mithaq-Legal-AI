@@ -1,24 +1,22 @@
 import axios from "axios";
-import FormData from "form-data";
 
 export const analyzeContractWithLangflow = async (
   fileBuffer: Buffer,
   fileName: string
 ): Promise<string> => {
-  const formData = new FormData();
-
-  formData.append("files", fileBuffer, fileName);
-  formData.append("input_value", "Please analyze the attached contract.");
-  formData.append("input_type", "chat");
-  formData.append("output_type", "chat");
-
   const response = await axios.post(
-    `${process.env.LANGFLOW_API_URL}/api/v1/run/${process.env.FLOW_ID}`,
-    formData,
+    `${process.env.LANGFLOW_API_URL}/api/v1/run/${process.env.FLOW_ID}?fallback=true`,
+    {
+      input_value: `Please analyze the attached contract: ${fileName}`,
+      input_type: "chat",
+      output_type: "chat",
+      tweaks: {},
+    },
     {
       headers: {
-        ...formData.getHeaders(),
+        "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.LANGFLOW_TOKEN}`,
+        "ngrok-skip-browser-warning": "true",
       },
       timeout: 90_000,
     }
