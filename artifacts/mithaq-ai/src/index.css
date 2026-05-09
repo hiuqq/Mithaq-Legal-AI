@@ -62,9 +62,9 @@
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 
   /* Brand tokens */
-  --color-saudi: #006C35;
+  --color-saudi: #00A86B;
   --color-glow: #00A86B;
-  --color-soft: #DDF7EA;
+  --color-soft: rgba(0, 168, 107, 0.12);
   --color-gold: #C9A227;
 
   --font-sans: var(--app-font-sans);
@@ -78,49 +78,49 @@
 }
 
 :root {
-  --button-outline: rgba(0, 0, 0, 0.08);
-  --badge-outline: rgba(0, 0, 0, 0.04);
+  --button-outline: rgba(0, 168, 107, 0.15);
+  --badge-outline: rgba(0, 168, 107, 0.08);
   --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0, 0, 0, 0.02);
-  --elevate-2: rgba(0, 0, 0, 0.05);
+  --elevate-1: rgba(0, 168, 107, 0.04);
+  --elevate-2: rgba(0, 168, 107, 0.08);
 
-  /* Light background — white body */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 10%;          /* #1A1A1A */
+  /* Dark navy background */
+  --background: 211 68% 14%;       /* #0B1F3A */
+  --foreground: 214 100% 95%;      /* #E6F1FF */
 
-  --border: 214 32% 91%;            /* #E5E9EF */
-  --input: 0 0% 100%;
-  --ring: 149 100% 21%;             /* #006C35 */
+  --border: 211 50% 25%;           /* dark teal border */
+  --input: 211 60% 18%;
+  --ring: 158 100% 33%;            /* #00A86B */
 
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
-  --card-border: 214 32% 91%;
+  --card: 211 67% 18%;             /* #0F2A4D */
+  --card-foreground: 214 100% 95%;
+  --card-border: 211 50% 25%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
-  --popover-border: 214 32% 91%;
+  --popover: 211 67% 18%;
+  --popover-foreground: 214 100% 95%;
+  --popover-border: 211 50% 25%;
 
-  --sidebar: 0 0% 100%;
-  --sidebar-foreground: 0 0% 10%;
-  --sidebar-border: 214 32% 91%;
-  --sidebar-primary: 149 100% 21%;
+  --sidebar: 211 67% 18%;
+  --sidebar-foreground: 214 100% 95%;
+  --sidebar-border: 211 50% 25%;
+  --sidebar-primary: 158 100% 33%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 220 14% 96%;
-  --sidebar-accent-foreground: 0 0% 10%;
-  --sidebar-ring: 149 100% 21%;
+  --sidebar-accent: 211 55% 22%;
+  --sidebar-accent-foreground: 214 100% 95%;
+  --sidebar-ring: 158 100% 33%;
 
-  /* Saudi green #006C35 */
-  --primary: 149 100% 21%;
+  /* Emerald green #00A86B */
+  --primary: 158 100% 33%;
   --primary-foreground: 0 0% 100%;
 
-  /* Light gray #F5F7FA */
-  --secondary: 220 14% 96%;
-  --secondary-foreground: 0 0% 10%;
+  /* Slightly lighter navy */
+  --secondary: 211 55% 22%;
+  --secondary-foreground: 214 100% 95%;
 
-  --muted: 220 14% 96%;
-  --muted-foreground: 220 9% 46%;   /* #6B7280 */
+  --muted: 211 55% 22%;
+  --muted-foreground: 214 30% 65%;  /* #7A9BBF */
 
-  /* Glow green #00A86B */
+  /* Emerald accent */
   --accent: 158 100% 33%;
   --accent-foreground: 0 0% 100%;
 
@@ -129,10 +129,10 @@
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --chart-1: 149 100% 21%;
-  --chart-2: 158 100% 33%;
+  --chart-1: 158 100% 33%;
+  --chart-2: 158 80% 44%;
   --chart-3: 46 67% 47%;
-  --chart-4: 149 80% 30%;
+  --chart-4: 158 60% 55%;
   --chart-5: 46 60% 55%;
 
   --app-font-sans: 'Cairo', 'Tajawal', sans-serif;
@@ -140,15 +140,15 @@
   --app-font-mono: Menlo, monospace;
   --radius: 0.75rem;
 
-  /* Light-mode shadows */
-  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
-  --shadow-xs:  0px 1px 3px 0px rgba(0, 0, 0, 0.05);
-  --shadow-sm:  0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
-  --shadow:     0px 2px 4px 0px rgba(0, 0, 0, 0.05), 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
-  --shadow-md:  0px 4px 6px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg:  0px 10px 15px -3px rgba(0, 0, 0, 0.07), 0px 4px 6px -2px rgba(0, 0, 0, 0.04);
-  --shadow-xl:  0px 20px 25px -5px rgba(0, 0, 0, 0.08), 0px 10px 10px -5px rgba(0, 0, 0, 0.03);
-  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.12);
+  /* Dark-mode shadows with green glow */
+  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --shadow-xs:  0px 1px 3px 0px rgba(0, 0, 0, 0.35);
+  --shadow-sm:  0px 1px 2px 0px rgba(0, 0, 0, 0.30), 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  --shadow:     0px 2px 8px 0px rgba(0, 0, 0, 0.40), 0 0 0 1px rgba(0, 168, 107, 0.08);
+  --shadow-md:  0px 4px 16px -1px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 168, 107, 0.10);
+  --shadow-lg:  0px 10px 24px -3px rgba(0, 0, 0, 0.50), 0 0 20px rgba(0, 168, 107, 0.08);
+  --shadow-xl:  0px 20px 40px -5px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 168, 107, 0.10);
+  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.60), 0 0 40px rgba(0, 168, 107, 0.12);
 
   --tracking-normal: 0em;
   --spacing: 0.25rem;
@@ -242,18 +242,17 @@
     inset: -1px;
   }
 
-  /* Light-mode card & glow utilities */
+  /* Dark-mode card & glow utilities */
   .cyan-glow {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 12px rgba(0, 168, 107, 0.15), 0 1px 4px rgba(0, 0, 0, 0.40);
   }
 
   .cyan-glow-strong {
-    box-shadow: 0 4px 16px rgba(0, 108, 53, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 168, 107, 0.25), 0 2px 8px rgba(0, 0, 0, 0.45);
   }
 
   .cyan-text-glow {
-    /* unused in light mode — no-op */
-    text-shadow: none;
+    text-shadow: 0 0 20px rgba(0, 168, 107, 0.50);
   }
 
   .card-hover {
@@ -262,13 +261,13 @@
 
   .card-hover:hover {
     transform: translateY(-4px);
-    border-color: rgba(0, 108, 53, 0.22);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09), 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 168, 107, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.50), 0 0 20px rgba(0, 168, 107, 0.12);
   }
 
   @keyframes pulse-cyan {
     0%, 100% { opacity: 1; }
-    50%       { opacity: 0.55; }
+    50%       { opacity: 0.45; }
   }
 
   @keyframes float {
@@ -289,19 +288,19 @@
     animation: pulse-cyan 2s ease-in-out infinite;
   }
 
-  /* Deep green gradient — beautiful on white */
+  /* Emerald gradient on dark */
   .gradient-text {
-    background: linear-gradient(135deg, #006C35 0%, #00A86B 100%);
+    background: linear-gradient(135deg, #00A86B 0%, #34D399 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Very subtle grid for hero/architecture sections */
+  /* Subtle dark grid for hero/architecture sections */
   .bg-grid-pattern {
     background-image:
-      linear-gradient(rgba(0, 108, 53, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 108, 53, 0.025) 1px, transparent 1px);
+      linear-gradient(rgba(0, 168, 107, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 168, 107, 0.06) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 }

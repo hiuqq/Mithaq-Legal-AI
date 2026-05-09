@@ -10,9 +10,9 @@ interface ResultsSectionProps {
 }
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; border: string; icon: string }> = {
-  "مخالف":        { label: "مخالف",        color: "#DC2626", bg: "#FEF2F2", border: "#FECACA", icon: "✗" },
-  "يحتاج تحسين": { label: "يحتاج تحسين", color: "#D97706", bg: "#FFFBEB", border: "#FDE68A", icon: "!" },
-  "متوافق":       { label: "متوافق",       color: "#059669", bg: "#ECFDF5", border: "#A7F3D0", icon: "✓" },
+  "مخالف":        { label: "مخالف",        color: "#F87171", bg: "rgba(239,68,68,0.15)",   border: "rgba(239,68,68,0.35)",   icon: "✗" },
+  "يحتاج تحسين": { label: "يحتاج تحسين", color: "#FBBF24", bg: "rgba(245,158,11,0.15)",  border: "rgba(245,158,11,0.35)",  icon: "!" },
+  "متوافق":       { label: "متوافق",       color: "#34D399", bg: "rgba(52,211,153,0.12)",  border: "rgba(52,211,153,0.30)",  icon: "✓" },
 };
 
 function ScoreCircle({
@@ -42,7 +42,7 @@ function ScoreCircle({
     >
       <div className="relative w-28 h-28">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 80 80">
-          <circle cx="40" cy="40" r="36" fill="none" stroke="#F3F4F6" strokeWidth="6" />
+          <circle cx="40" cy="40" r="36" fill="none" stroke="#1A3A5C" strokeWidth="6" />
           <motion.circle
             cx="40"
             cy="40"
@@ -69,7 +69,7 @@ function ScoreCircle({
       </div>
       <span
         className="text-xs font-semibold text-center max-w-[110px] leading-snug"
-        style={{ color: "#4A5568" }}
+        style={{ color: "#7A9BBF" }}
       >
         {label}
       </span>
@@ -303,22 +303,22 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       className="py-24 px-6"
-      style={{ background: "#FFFFFF" }}
+      style={{ background: "#0B1F3A" }}
     >
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-14">
           <span
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4"
-            style={{ border: "1px solid rgba(0,108,53,0.18)", background: "#DDF7EA", color: "#006C35" }}
+            style={{ border: "1px solid rgba(0,168,107,0.30)", background: "rgba(0,168,107,0.10)", color: "#00A86B" }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#006C35" }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#00A86B" }} />
             تقرير الجاهزية القانونية
           </span>
-          <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color: "#1A1A1A" }}>
+          <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color: "#E6F1FF" }}>
             نتائج الهندسة القانونية
           </h2>
-          <p className="text-lg" style={{ color: "#4A5568" }}>
+          <p className="text-lg" style={{ color: "#A8C4E0" }}>
             تم اكتشاف المخالفات وإعادة هندسة العقد وفق معايير السعودة والجاهزية الاستثمارية
           </p>
         </div>
@@ -337,7 +337,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-2xl font-black gradient-text">{stat.value}</div>
-              <div className="text-xs font-medium mt-0.5" style={{ color: "#9CA3AF" }}>{stat.label}</div>
+              <div className="text-xs font-medium mt-0.5" style={{ color: "#4A6A8A" }}>{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -347,12 +347,12 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl bg-white p-8 mb-8"
-          style={{ border: "1px solid #E5E9EF", boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}
+          className="rounded-2xl p-8 mb-8"
+          style={{ border: "1px solid rgba(0,168,107,0.18)", background: "#0F2A4D", boxShadow: "0 4px 20px rgba(0,0,0,0.35)" }}
         >
           <h3
             className="text-center text-xs font-bold uppercase tracking-widest mb-8"
-            style={{ color: "#9CA3AF" }}
+            style={{ color: "#4A6A8A" }}
           >
             مؤشرات الجاهزية
           </h3>
@@ -390,14 +390,14 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
             >
               <div
                 className="relative w-28 h-28 rounded-full flex flex-col items-center justify-center"
-                style={{ border: "6px solid #FDE68A", background: "#FFFBEB" }}
+                style={{ border: "6px solid rgba(201,162,39,0.35)", background: "rgba(201,162,39,0.10)" }}
               >
                 <span className="text-xs font-bold" style={{ color: "#D97706" }}>ر.س</span>
                 <span className="text-lg font-black" style={{ color: "#C9A227" }}>
                   {(report.financialRiskEstimate / 1000).toFixed(0)}K
                 </span>
               </div>
-              <span className="text-xs font-semibold text-center max-w-[110px] leading-snug" style={{ color: "#4A5568" }}>
+              <span className="text-xs font-semibold text-center max-w-[110px] leading-snug" style={{ color: "#7A9BBF" }}>
                 Financial Risk Estimate
               </span>
             </motion.div>
@@ -407,7 +407,7 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           <div className="mt-6 text-center">
             <span
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm"
-              style={{ background: "#DDF7EA", color: "#006C35", border: "1px solid rgba(0,108,53,0.22)" }}
+              style={{ background: "rgba(0,168,107,0.12)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.30)" }}
             >
               <span>✓</span>
               الحالة: {report.statusLabel}
@@ -420,19 +420,19 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="rounded-2xl bg-white overflow-hidden mb-8"
-          style={{ border: "1px solid #E5E9EF", boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}
+          className="rounded-2xl overflow-hidden mb-8"
+          style={{ border: "1px solid rgba(0,168,107,0.18)", background: "#0F2A4D", boxShadow: "0 4px 20px rgba(0,0,0,0.35)" }}
         >
           <div
             className="px-6 py-5 flex items-center justify-between"
-            style={{ borderBottom: "1px solid #F3F4F6", background: "#FAFBFC" }}
+            style={{ borderBottom: "1px solid rgba(0,168,107,0.12)", background: "#0B1F3A" }}
           >
-            <h3 className="font-bold" style={{ color: "#1A1A1A" }}>
+            <h3 className="font-bold" style={{ color: "#E6F1FF" }}>
               تفاصيل البنود المُهندَسة
             </h3>
             <span
               className="text-xs font-bold px-3 py-1 rounded-full"
-              style={{ background: "#DDF7EA", color: "#006C35", border: "1px solid rgba(0,108,53,0.18)" }}
+              style={{ background: "rgba(0,168,107,0.12)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.25)" }}
             >
               {report.rows.length} بنود مراجعة
             </span>
@@ -442,12 +442,12 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr style={{ background: "#F9FAFB", borderBottom: "1px solid #F3F4F6" }}>
+                <tr style={{ background: "#0B1F3A", borderBottom: "1px solid rgba(0,168,107,0.12)" }}>
                   {["البند", "المشكلة", "الصياغة السعودية المقترحة", "المخاطر المالية", "السند النظامي"].map((h) => (
                     <th
                       key={h}
                       className="text-right px-5 py-4 text-xs font-bold uppercase tracking-wider"
-                      style={{ color: "#6B7280" }}
+                      style={{ color: "#4A6A8A" }}
                     >
                       {h}
                     </th>
@@ -464,11 +464,11 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + index * 0.08 }}
                       style={{
-                        borderBottom: "1px solid #F3F4F6",
-                        background: index % 2 === 1 ? "#FAFBFC" : "#FFFFFF",
+                        borderBottom: "1px solid rgba(0,168,107,0.08)",
+                        background: index % 2 === 1 ? "rgba(255,255,255,0.025)" : "transparent",
                       }}
                     >
-                      <td className="px-5 py-4 font-medium" style={{ color: "#1A1A1A" }}>
+                      <td className="px-5 py-4 font-medium" style={{ color: "#E6F1FF" }}>
                         {row.originalClause}
                       </td>
                       <td className="px-5 py-4">
@@ -479,16 +479,16 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                           {cfg.icon} {row.status}
                         </span>
                       </td>
-                      <td className="px-5 py-4 leading-relaxed" style={{ color: "#374151" }}>
+                      <td className="px-5 py-4 leading-relaxed" style={{ color: "#A8C4E0" }}>
                         {row.suggestedText}
                       </td>
-                      <td className="px-5 py-4 text-xs leading-relaxed" style={{ color: "#D97706" }}>
+                      <td className="px-5 py-4 text-xs leading-relaxed" style={{ color: "#C9A227" }}>
                         {row.financialRisk}
                       </td>
                       <td className="px-5 py-4">
                         <span
                           className="inline-block px-3 py-1 rounded-lg text-xs font-bold"
-                          style={{ background: "#DDF7EA", color: "#006C35", border: "1px solid rgba(0,108,53,0.18)" }}
+                          style={{ background: "rgba(0,168,107,0.12)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.25)" }}
                         >
                           {row.legalRef}
                         </span>
@@ -511,10 +511,10 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.08 }}
                   className="rounded-xl p-4 space-y-2.5"
-                  style={{ border: "1px solid #E5E9EF", background: "#FAFBFC" }}
+                  style={{ border: "1px solid rgba(0,168,107,0.18)", background: "#0B1F3A" }}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-bold text-sm" style={{ color: "#1A1A1A" }}>{row.originalClause}</span>
+                    <span className="font-bold text-sm" style={{ color: "#E6F1FF" }}>{row.originalClause}</span>
                     <span
                       className="text-xs font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap"
                       style={{ color: cfg.color, background: cfg.bg, border: `1px solid ${cfg.border}` }}
@@ -522,11 +522,11 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
                       {row.status}
                     </span>
                   </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "#4A5568" }}>{row.suggestedText}</p>
-                  <p className="text-xs" style={{ color: "#D97706" }}>{row.financialRisk}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: "#A8C4E0" }}>{row.suggestedText}</p>
+                  <p className="text-xs" style={{ color: "#C9A227" }}>{row.financialRisk}</p>
                   <span
                     className="inline-block text-xs font-bold px-2.5 py-0.5 rounded-lg"
-                    style={{ background: "#DDF7EA", color: "#006C35", border: "1px solid rgba(0,108,53,0.18)" }}
+                    style={{ background: "rgba(0,168,107,0.12)", color: "#00A86B", border: "1px solid rgba(0,168,107,0.25)" }}
                   >
                     {row.legalRef}
                   </span>
@@ -552,11 +552,11 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
             onClick={handleDownloadReport}
             className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-300 hover:scale-105 text-white"
             style={{
-              background: "#006C35",
-              boxShadow: "0 8px 24px rgba(0,108,53,0.22)",
+              background: "#00A86B",
+              boxShadow: "0 8px 28px rgba(0,168,107,0.35)",
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#005028"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#006C35"; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#008558"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#00A86B"; }}
           >
             <span>📥</span>
             تحميل تقرير الجاهزية
@@ -566,15 +566,15 @@ export function ResultsSection({ report, analysisTime }: ResultsSectionProps) {
             onClick={handleDownloadRevised}
             className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-300 hover:scale-105"
             style={{
-              border: "1.5px solid #006C35",
-              color: "#006C35",
-              background: "#FFFFFF",
+              border: "1.5px solid rgba(0,168,107,0.50)",
+              color: "#00A86B",
+              background: "transparent",
             }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLButtonElement).style.background = "#DDF7EA";
+              (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,168,107,0.10)";
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLButtonElement).style.background = "#FFFFFF";
+              (e.currentTarget as HTMLButtonElement).style.background = "transparent";
             }}
           >
             <span>📄</span>

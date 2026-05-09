@@ -3,7 +3,7 @@ import { AGENTS } from "@/data/mockData";
 
 export function AgentsSection() {
   return (
-    <section id="agents" className="py-24 px-6 relative bg-[#F5F7FA]">
+    <section id="agents" className="py-24 px-6 relative" style={{ background: "#0F2A4D" }}>
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -13,14 +13,21 @@ export function AgentsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-500/20 bg-[#DDF7EA] text-[#006C35] text-sm font-medium mb-4">
+          <div
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+            style={{
+              border: "1px solid rgba(0,168,107,0.30)",
+              background: "rgba(0,168,107,0.10)",
+              color: "#00A86B",
+            }}
+          >
             <span className="w-1.5 h-1.5 rounded-full bg-[#00A86B] animate-pulse" />
             الوكلاء الذكيون
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-4">
+          <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color: "#E6F1FF" }}>
             منظومة الوكلاء
           </h2>
-          <p className="text-[#4A5568] text-lg max-w-xl mx-auto">
+          <p className="text-lg max-w-xl mx-auto" style={{ color: "#A8C4E0" }}>
             المحلل القانوني، مهندس الصياغة السعودية، محلل المخاطر المالية، والدرع القضائي — يعملون بالتوازي لهندسة عقدك
           </p>
         </motion.div>
@@ -34,34 +41,46 @@ export function AgentsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="relative rounded-2xl border border-[#E5E9EF] bg-white p-8 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group"
+              className="relative rounded-2xl p-8 overflow-hidden group card-hover"
+              style={{
+                border: "1px solid rgba(0,168,107,0.18)",
+                background: "#0B1F3A",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.30)",
+              }}
             >
               {/* Top accent bar */}
-              <div 
-                className={`absolute top-0 left-0 right-0 h-1.5 ${index === 2 ? 'bg-[#C9A227]' : 'bg-[#006C35]'}`}
+              <div
+                className="absolute top-0 left-0 right-0 h-1.5"
+                style={{ background: index === 2 ? "#C9A227" : "#00A86B" }}
               />
 
               <div className="relative z-10">
                 {/* Icon */}
-                <div className="text-4xl mb-5 w-16 h-16 rounded-xl bg-[#DDF7EA] flex items-center justify-center">
+                <div
+                  className="text-4xl mb-5 w-16 h-16 rounded-xl flex items-center justify-center"
+                  style={{
+                    background: "rgba(0,168,107,0.12)",
+                    border: "1px solid rgba(0,168,107,0.20)",
+                  }}
+                >
                   {agent.icon}
                 </div>
 
                 {/* Name */}
-                <h3 className="text-xl font-bold text-[#1A1A1A] mb-1">{agent.name}</h3>
-                <span className="text-xs text-[#6B7280] font-medium tracking-wider uppercase mb-4 block">
+                <h3 className="text-xl font-bold mb-1" style={{ color: "#E6F1FF" }}>{agent.name}</h3>
+                <span className="text-xs font-medium tracking-wider uppercase mb-4 block" style={{ color: "#4A6A8A" }}>
                   {agent.nameEn}
                 </span>
 
                 {/* Description */}
-                <p className="text-[#4A5568] leading-relaxed text-sm">
+                <p className="leading-relaxed text-sm" style={{ color: "#A8C4E0" }}>
                   {agent.description}
                 </p>
 
                 {/* Status indicator */}
                 <div className="mt-6 flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#00A86B] animate-pulse" />
-                  <span className="text-xs text-[#4A5568] font-medium">نشط • جاهز للتحليل</span>
+                  <span className="text-xs font-medium" style={{ color: "#7A9BBF" }}>نشط • جاهز للتحليل</span>
                 </div>
               </div>
             </motion.div>
