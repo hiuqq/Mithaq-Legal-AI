@@ -40,9 +40,9 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative mb-8 mt-12"
+        className="relative mb-4 mt-4"
       >
-        <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 160, height: 160 }}>
+        <div className="mx-auto flex items-center justify-center animate-float" style={{ width: 120, height: 120 }}>
           <img
             src="/logo.png"
             alt="Mithaq AI"
@@ -56,7 +56,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="mb-6"
+        className="mb-3"
       >
         <span
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
@@ -79,7 +79,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="mb-5"
+        className="mb-3"
       >
         <div
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 tracking-wider"
@@ -106,7 +106,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3 }}
-        className="text-lg md:text-xl max-w-2xl leading-relaxed mb-12 font-medium"
+        className="text-base md:text-lg max-w-2xl leading-relaxed mb-6 font-medium"
         style={{ color: "#A8C4E0" }}
       >
         منظومة هندسة قانونية تعيد تصميم العقود وسعودتها لضمان الامتثال النظامي والجاهزية الاستثمارية في المملكة
@@ -117,7 +117,7 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="flex flex-col sm:flex-row items-center gap-4 mb-16"
+        className="flex flex-col sm:flex-row items-center gap-4 mb-6"
       >
         <button
           onClick={onStartClick}
@@ -138,8 +138,8 @@ export function HeroSection({ onStartClick }: HeroSectionProps) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
-        className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 pt-8"
-        style={{ borderTop: "1px solid rgba(0,168,107,0.20)" }}
+        className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 pb-6"
+        style={{ borderBottom: "1px solid rgba(0,168,107,0.20)" }}
       >
         <div className="flex flex-col items-center">
           <span className="text-2xl font-bold gradient-text">100%</span>
