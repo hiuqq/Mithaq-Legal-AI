@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { ComplianceReport } from "@/data/mockData";
 
 interface ResultsSectionProps {
@@ -112,9 +114,9 @@ function AgentSummaryPanel({ summary }: { summary: string }) {
             className="overflow-hidden"
           >
             <div className="px-6 pb-6 border-t border-border/50">
-              <pre className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed font-sans">
-                {summary}
-              </pre>
+              <div className="mt-4 text-sm text-muted-foreground leading-relaxed prose prose-sm prose-green max-w-none text-right [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-border [&_th]:p-2 [&_th]:bg-muted/40 [&_th]:text-xs [&_td]:border [&_td]:border-border [&_td]:p-2 [&_td]:text-xs [&_h1]:text-foreground [&_h2]:text-foreground [&_h3]:text-green-700 [&_h3]:font-bold [&_strong]:text-foreground [&_ul]:list-disc [&_ul]:pr-5 [&_ol]:list-decimal [&_ol]:pr-5">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{summary}</ReactMarkdown>
+              </div>
             </div>
           </motion.div>
         )}

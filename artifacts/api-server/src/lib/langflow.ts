@@ -58,13 +58,14 @@ export const analyzeContractWithLangflow = async (
 
   // ── Step 2: Run the flow with the uploaded file in tweaks ─────────────────
   const runUrl = `${baseUrl}/api/v1/run/${flowId}?stream=false`;
+  const triggerMessage = "قم بتحليل هذا العقد وتوضيح مدى توافقه مع نظام العمل السعودي 2025";
   const runPayload = {
-    input_value: "Please analyze the attached contract.",
+    input_value: triggerMessage,
     input_type: "chat",
     output_type: "chat",
     tweaks: {
       "ChatInput-ccXwZ": {
-        input_value: "Please analyze this contract",
+        input_value: triggerMessage,
         files: [filePath],
       },
     },
