@@ -350,7 +350,21 @@ export function UploadSection({ onResults }: UploadSectionProps) {
               exit={{ opacity: 0, y: -8 }}
               className="mt-4 rounded-xl border border-red-300 bg-red-50 px-5 py-4 text-right"
             >
-              <p className="font-bold text-red-700 text-sm mb-1">⚠️ فشل الاتصال بـ LangFlow</p>
+              <div className="flex items-center justify-between mb-1">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(analysisError ?? "").then(() => {
+                      const btn = document.getElementById("copy-err-btn");
+                      if (btn) { btn.textContent = "✓ تم النسخ"; setTimeout(() => { btn.textContent = "نسخ"; }, 2000); }
+                    });
+                  }}
+                  id="copy-err-btn"
+                  className="text-xs font-medium px-3 py-1 rounded-lg border border-red-300 text-red-600 hover:bg-red-100 transition-colors"
+                >
+                  نسخ
+                </button>
+                <p className="font-bold text-red-700 text-sm">⚠️ فشل الاتصال بـ LangFlow</p>
+              </div>
               <p className="text-red-600 text-xs font-mono break-all">{analysisError}</p>
             </motion.div>
           )}
