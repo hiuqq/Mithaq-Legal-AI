@@ -1,5 +1,6 @@
 import { Router } from "express";
 import multer from "multer";
+import { AxiosError } from "axios";
 import { supabase } from "../lib/supabase.js";
 import { analyzeContractWithLangflow } from "../lib/langflow.js";
 
@@ -138,18 +139,20 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
       contractId = contractData.id as string;
     }
 
-    // 2. Call LangFlow (90-second timeout, multipart file upload)
-    let agentOutput = "";
-    try {
-      if (req.file) {
-        agentOutput = await analyzeContractWithLangflow(
-          req.file.buffer,
-          req.file.originalname
-        );
-      }
-    } catch {
-      // Timeout or network error — agentOutput stays "" and we fall back to mock
+    // 2. Call LangFlow (90-second timeout, two-step upload + run)
+    if (!req.file) {
+      res.status(400).json({ success: false, error: "No PDF file received by the server." });
+      return;
     }
+
+    req.log.info({ filename: req.file.originalname, sizeBytes: req.file.size }, "Calling LangFlow...");
+
+    const agentOutput = await analyzeContractWithLangflow(
+      req.file.buffer,
+      req.file.originalname
+    );
+
+    req.log.info({ outputLength: agentOutput.length, preview: agentOutput.slice(0, 200) }, "LangFlow response received");
 
     const parsedRows = parseAgentOutput(agentOutput);
     const rows = parsedRows ?? MOCK_ROWS;
@@ -226,19 +229,23 @@ router.post("/analyze-contract", upload.single("file"), async (req, res) => {
         .catch(() => {});
     }
 
-    // Fall back to mock so the frontend never crashes
-    res.json({
-      success: true,
-      report: {
-        scoreBefore: 62,
-        scoreAfter: 96,
-        statusLabel: "محسّن",
-        rows: MOCK_ROWS,
-        agentSummary: "",
-        source: "mock",
-        contractId,
-        workflowResultId: null,
-      },
+    // Extract the real error message — especially useful for Axios/LangFlow errors
+    let errorMessage = "Unknown error";
+    let langflowDetail: unknown = null;
+
+    if (error instanceof AxiosError) {
+      errorMessage = error.message;
+      langflowDetail = error.response?.data;
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    req.log.error({ errorMessage, langflowDetail }, "LangFlow call failed");
+
+    res.status(502).json({
+      success: false,
+      error: errorMessage,
+      langflowDetail,
     });
   }
 });

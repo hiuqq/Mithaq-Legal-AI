@@ -16,6 +16,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
   const [dragOver, setDragOver] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const [analysisError, setAnalysisError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = useCallback((file: File) => {
@@ -45,6 +46,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
     setSelectedFile(null);
     setCurrentStep(0);
     setCompletedSteps([]);
+    setAnalysisError(null);
     onResults(null, 0);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
@@ -52,17 +54,35 @@ export function UploadSection({ onResults }: UploadSectionProps) {
   const runAnalysis = async () => {
     if (!selectedFile) return;
     setUploadState("analyzing");
+    setAnalysisError(null);
     setCurrentStep(0);
     setCompletedSteps([]);
     const startTime = Date.now();
 
-    for (let i = 0; i < ANALYSIS_STEPS.length; i++) {
-      setCurrentStep(i);
-      await new Promise((r) => setTimeout(r, 1400));
-      setCompletedSteps((prev) => [...prev, i]);
+    // Run animation and real API call in parallel
+    const animationPromise = (async () => {
+      for (let i = 0; i < ANALYSIS_STEPS.length; i++) {
+        setCurrentStep(i);
+        await new Promise((r) => setTimeout(r, 1400));
+        setCompletedSteps((prev) => [...prev, i]);
+      }
+    })();
+
+    let report = null;
+    let apiError: string | null = null;
+    try {
+      [, report] = await Promise.all([animationPromise, analyzeContract(selectedFile)]);
+    } catch (err) {
+      await animationPromise;
+      apiError = err instanceof Error ? err.message : String(err);
     }
 
-    const report = await analyzeContract(selectedFile);
+    if (apiError || !report) {
+      setAnalysisError(apiError ?? "فشل التحليل — الرجاء المحاولة مجدداً");
+      setUploadState("ready");
+      return;
+    }
+
     const timeSeconds = Math.round((Date.now() - startTime) / 1000);
     setUploadState("done");
     onResults(report, timeSeconds);
@@ -317,6 +337,21 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                   })}
                 </div>
               </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Error banner */}
+        <AnimatePresence>
+          {analysisError && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="mt-4 rounded-xl border border-red-300 bg-red-50 px-5 py-4 text-right"
+            >
+              <p className="font-bold text-red-700 text-sm mb-1">⚠️ فشل الاتصال بـ LangFlow</p>
+              <p className="text-red-600 text-xs font-mono break-all">{analysisError}</p>
             </motion.div>
           )}
         </AnimatePresence>
