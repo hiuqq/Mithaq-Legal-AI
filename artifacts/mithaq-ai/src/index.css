@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@tailwindcss/typography";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -40,9 +40,9 @@
   --color-destructive-foreground: hsl(var(--destructive-foreground));
   --color-destructive-border: var(--destructive-border);
 
-  --color-emerald-400: #00C87A;
-  --color-emerald-500: #00A86B;
-  --color-emerald-600: #008558;
+  --color-emerald-400: #00A86B;
+  --color-emerald-500: #008558;
+  --color-emerald-600: #006B46;
 
   --color-chart-1: hsl(var(--chart-1));
   --color-chart-2: hsl(var(--chart-2));
@@ -64,7 +64,7 @@
   /* Brand tokens */
   --color-saudi: #006C35;
   --color-glow: #00A86B;
-  --color-soft: rgba(0,168,107,0.15);
+  --color-soft: #DDF7EA;
   --color-gold: #C9A227;
 
   --font-sans: var(--app-font-sans);
@@ -78,61 +78,61 @@
 }
 
 :root {
-  --button-outline: rgba(255, 255, 255, 0.06);
-  --badge-outline: rgba(255, 255, 255, 0.03);
+  --button-outline: rgba(0, 0, 0, 0.08);
+  --badge-outline: rgba(0, 0, 0, 0.04);
   --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(255, 255, 255, 0.03);
-  --elevate-2: rgba(255, 255, 255, 0.06);
+  --elevate-1: rgba(0, 0, 0, 0.02);
+  --elevate-2: rgba(0, 0, 0, 0.05);
 
-  /* Dark navy background */
-  --background: 225 50% 7%;        /* #07091A */
-  --foreground: 220 30% 94%;       /* #EBF0FC */
+  /* Light background — white body */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;          /* #1A1A1A */
 
-  --border: 225 35% 17%;           /* #182038 */
-  --input: 225 45% 10%;
-  --ring: 149 100% 33%;
+  --border: 214 32% 91%;            /* #E5E9EF */
+  --input: 0 0% 100%;
+  --ring: 149 100% 21%;             /* #006C35 */
 
-  --card: 225 45% 10%;             /* #0D1224 */
-  --card-foreground: 220 30% 94%;
-  --card-border: 225 35% 17%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --card-border: 214 32% 91%;
 
-  --popover: 225 45% 10%;
-  --popover-foreground: 220 30% 94%;
-  --popover-border: 225 35% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --popover-border: 214 32% 91%;
 
-  --sidebar: 225 45% 9%;
-  --sidebar-foreground: 220 30% 94%;
-  --sidebar-border: 225 35% 17%;
-  --sidebar-primary: 149 100% 33%;
+  --sidebar: 0 0% 100%;
+  --sidebar-foreground: 0 0% 10%;
+  --sidebar-border: 214 32% 91%;
+  --sidebar-primary: 149 100% 21%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 225 38% 14%;
-  --sidebar-accent-foreground: 220 30% 94%;
-  --sidebar-ring: 149 100% 33%;
+  --sidebar-accent: 220 14% 96%;
+  --sidebar-accent-foreground: 0 0% 10%;
+  --sidebar-ring: 149 100% 21%;
 
-  /* Saudi green — same brand color */
+  /* Saudi green #006C35 */
   --primary: 149 100% 21%;
   --primary-foreground: 0 0% 100%;
 
-  /* Dark surface */
-  --secondary: 225 38% 14%;        /* #131D35 */
-  --secondary-foreground: 220 30% 94%;
+  /* Light gray #F5F7FA */
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 0 0% 10%;
 
-  --muted: 225 38% 14%;
-  --muted-foreground: 220 20% 55%; /* #7A90B5 */
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;   /* #6B7280 */
 
-  /* Glow green */
+  /* Glow green #00A86B */
   --accent: 158 100% 33%;
   --accent-foreground: 0 0% 100%;
 
-  --gold: 46 67% 47%;
+  --gold: 46 67% 47%;               /* #C9A227 */
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --chart-1: 149 100% 33%;
-  --chart-2: 158 100% 40%;
+  --chart-1: 149 100% 21%;
+  --chart-2: 158 100% 33%;
   --chart-3: 46 67% 47%;
-  --chart-4: 149 80% 38%;
+  --chart-4: 149 80% 30%;
   --chart-5: 46 60% 55%;
 
   --app-font-sans: 'Cairo', 'Tajawal', sans-serif;
@@ -140,15 +140,15 @@
   --app-font-mono: Menlo, monospace;
   --radius: 0.75rem;
 
-  /* Dark-mode shadows */
-  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
-  --shadow-xs:  0px 1px 3px 0px rgba(0, 0, 0, 0.5);
-  --shadow-sm:  0px 1px 2px 0px rgba(0, 0, 0, 0.4), 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
-  --shadow:     0px 2px 4px 0px rgba(0, 0, 0, 0.5), 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
-  --shadow-md:  0px 4px 6px -1px rgba(0, 0, 0, 0.5), 0px 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg:  0px 10px 15px -3px rgba(0, 0, 0, 0.5), 0px 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --shadow-xl:  0px 20px 25px -5px rgba(0, 0, 0, 0.5), 0px 10px 10px -5px rgba(0, 0, 0, 0.3);
-  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.6);
+  /* Light-mode shadows */
+  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+  --shadow-xs:  0px 1px 3px 0px rgba(0, 0, 0, 0.05);
+  --shadow-sm:  0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+  --shadow:     0px 2px 4px 0px rgba(0, 0, 0, 0.05), 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+  --shadow-md:  0px 4px 6px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg:  0px 10px 15px -3px rgba(0, 0, 0, 0.07), 0px 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl:  0px 20px 25px -5px rgba(0, 0, 0, 0.08), 0px 10px 10px -5px rgba(0, 0, 0, 0.03);
+  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.12);
 
   --tracking-normal: 0em;
   --spacing: 0.25rem;
@@ -242,17 +242,18 @@
     inset: -1px;
   }
 
-  /* Dark-mode glow utilities */
+  /* Light-mode card & glow utilities */
   .cyan-glow {
-    box-shadow: 0 0 20px rgba(0, 168, 107, 0.12), 0 4px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
   .cyan-glow-strong {
-    box-shadow: 0 0 40px rgba(0, 168, 107, 0.25), 0 8px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 16px rgba(0, 108, 53, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 
   .cyan-text-glow {
-    text-shadow: 0 0 20px rgba(0, 168, 107, 0.6), 0 0 40px rgba(0, 168, 107, 0.3);
+    /* unused in light mode — no-op */
+    text-shadow: none;
   }
 
   .card-hover {
@@ -261,13 +262,13 @@
 
   .card-hover:hover {
     transform: translateY(-4px);
-    border-color: rgba(0, 168, 107, 0.30);
-    box-shadow: 0 8px 32px rgba(0, 168, 107, 0.12), 0 4px 12px rgba(0, 0, 0, 0.4);
+    border-color: rgba(0, 108, 53, 0.22);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09), 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
   @keyframes pulse-cyan {
     0%, 100% { opacity: 1; }
-    50%       { opacity: 0.45; }
+    50%       { opacity: 0.55; }
   }
 
   @keyframes float {
@@ -288,19 +289,19 @@
     animation: pulse-cyan 2s ease-in-out infinite;
   }
 
-  /* Bright gradient text — readable on dark backgrounds */
+  /* Deep green gradient — beautiful on white */
   .gradient-text {
-    background: linear-gradient(135deg, #00C87A 0%, #00F0A0 100%);
+    background: linear-gradient(135deg, #006C35 0%, #00A86B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Subtle dark grid */
+  /* Very subtle grid for hero/architecture sections */
   .bg-grid-pattern {
     background-image:
-      linear-gradient(rgba(0, 168, 107, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 168, 107, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(0, 108, 53, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 108, 53, 0.025) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 }

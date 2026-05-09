@@ -3,13 +3,9 @@ import { ARCHITECTURE_NODES } from "@/data/mockData";
 
 export function ArchitectureSection() {
   return (
-    <section id="architecture" className="py-24 px-6 relative overflow-hidden" style={{ background: "#070917" }}>
+    <section id="architecture" className="py-24 px-6 relative overflow-hidden bg-white">
       {/* Background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-60" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0,168,107,0.07) 0%, transparent 70%)" }}
-      />
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.025]" />
 
       <div className="max-w-6xl mx-auto relative">
         {/* Section header */}
@@ -20,21 +16,14 @@ export function ArchitectureSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4"
-            style={{
-              border: "1px solid rgba(0,200,122,0.20)",
-              background: "rgba(0,168,107,0.10)",
-              color: "#00C87A",
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#00A86B" }} />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#006C35]/20 bg-[#DDF7EA] text-[#006C35] text-sm font-medium mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#006C35] animate-pulse" />
             البنية التقنية
           </div>
-          <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color: "#EBF0FC" }}>
+          <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-4">
             معمارية النظام
           </h2>
-          <p className="text-lg max-w-xl mx-auto" style={{ color: "#7A90B5" }}>
+          <p className="text-[#4A5568] text-lg max-w-xl mx-auto">
             تدفق آلي ومتسلسل من رفع العقد حتى إصدار تقرير الجاهزية الاستثمارية النهائي
           </p>
         </motion.div>
@@ -42,7 +31,7 @@ export function ArchitectureSection() {
         {/* Flow — desktop */}
         <div className="hidden md:flex items-center justify-between gap-2 relative">
           {/* Connecting line */}
-          <div className="absolute top-8 left-0 right-0 h-[2px] z-0">
+          <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 z-0">
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -50,7 +39,7 @@ export function ArchitectureSection() {
               transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
               className="h-full origin-right"
               style={{
-                background: "linear-gradient(90deg, rgba(0,168,107,0.70) 0%, rgba(0,168,107,0.10) 100%)",
+                background: "linear-gradient(90deg, #006C35 0%, rgba(0, 168, 107, 0.20) 100%)",
               }}
             />
           </div>
@@ -65,33 +54,29 @@ export function ArchitectureSection() {
               className="relative z-10 flex flex-col items-center gap-3 group"
             >
               <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl transition-all duration-300"
+                className="w-16 h-16 rounded-2xl border flex items-center justify-center text-2xl transition-all duration-300 bg-white"
                 style={{
-                  background: index === ARCHITECTURE_NODES.length - 1
-                    ? "rgba(0,168,107,0.18)"
-                    : "rgba(13, 18, 36, 0.95)",
-                  border: index === ARCHITECTURE_NODES.length - 1
-                    ? "2px solid rgba(0,168,107,0.50)"
-                    : "1.5px solid rgba(255,255,255,0.08)",
+                  borderColor: index === ARCHITECTURE_NODES.length - 1 ? "#006C35" : "#E5E9EF",
+                  borderWidth: index === ARCHITECTURE_NODES.length - 1 ? "2px" : "1.5px",
                   boxShadow: index === ARCHITECTURE_NODES.length - 1
-                    ? "0 0 24px rgba(0,168,107,0.25)"
-                    : "0 4px 16px rgba(0,0,0,0.4)",
+                    ? "0 4px 16px rgba(0,108,53,0.18)"
+                    : "0 2px 8px rgba(0,0,0,0.06)",
                 }}
               >
                 {node.icon}
               </div>
 
               {index < ARCHITECTURE_NODES.length - 1 && (
-                <div className="absolute top-8 -left-4 text-sm font-bold" style={{ color: "#00A86B" }}>←</div>
+                <div className="absolute top-8 -left-4 text-[#006C35] text-sm font-bold">←</div>
               )}
 
               {/* Label */}
-              <span className="text-xs text-center font-bold max-w-[80px] leading-snug" style={{ color: "#EBF0FC" }}>
+              <span className="text-xs text-center text-[#1A1A1A] font-bold max-w-[80px] leading-snug">
                 {node.label}
               </span>
 
               {/* Step number */}
-              <span className="text-[10px] font-mono font-bold" style={{ color: "rgba(0,168,107,0.35)" }}>
+              <span className="text-[10px] text-[#006C35]/40 font-mono font-bold">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </motion.div>
@@ -110,26 +95,22 @@ export function ArchitectureSection() {
               className="flex flex-col items-center"
             >
               <div className="flex items-center gap-4 py-3">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
+                <div 
+                  className="w-12 h-12 rounded-xl border flex items-center justify-center text-xl bg-white"
                   style={{
-                    background: index === ARCHITECTURE_NODES.length - 1
-                      ? "rgba(0,168,107,0.18)"
-                      : "rgba(13,18,36,0.95)",
-                    border: index === ARCHITECTURE_NODES.length - 1
-                      ? "2px solid rgba(0,168,107,0.45)"
-                      : "1.5px solid rgba(255,255,255,0.08)",
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+                    borderColor: index === ARCHITECTURE_NODES.length - 1 ? "#006C35" : "#E5E9EF",
+                    borderWidth: index === ARCHITECTURE_NODES.length - 1 ? "2px" : "1.5px",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.06)"
                   }}
                 >
                   {node.icon}
                 </div>
-                <span className="text-sm font-bold" style={{ color: "#EBF0FC" }}>{node.label}</span>
+                <span className="text-sm font-bold text-[#1A1A1A]">{node.label}</span>
               </div>
               {index < ARCHITECTURE_NODES.length - 1 && (
-                <div
-                  className="w-[2px] h-6"
-                  style={{ background: "linear-gradient(to bottom, rgba(0,168,107,0.70), rgba(0,168,107,0.10))" }}
+                <div 
+                  className="w-[2px] h-6" 
+                  style={{ background: "linear-gradient(to bottom, #006C35, rgba(0,168,107,0.20))" }}
                 />
               )}
             </motion.div>
@@ -152,26 +133,19 @@ export function ArchitectureSection() {
           ].map((card) => (
             <div
               key={card.title}
-              className="rounded-xl p-5 flex gap-4 items-start"
-              style={{
-                background: "rgba(13,18,36,0.8)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
-              }}
+              className="rounded-xl border border-[#E5E9EF] bg-white p-5 flex gap-4 items-start shadow-sm"
             >
-              <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-xl"
-                style={{ background: "rgba(0,168,107,0.12)", border: "1px solid rgba(0,168,107,0.18)" }}
-              >
+              <div className="w-10 h-10 rounded-lg bg-[#DDF7EA] flex items-center justify-center flex-shrink-0 text-xl">
                 {card.icon}
               </div>
               <div>
-                <div className="font-bold text-sm mb-1" style={{ color: "#EBF0FC" }}>{card.title}</div>
-                <div className="text-xs leading-relaxed" style={{ color: "#4A6080" }}>{card.desc}</div>
+                <div className="font-bold text-[#1A1A1A] text-sm mb-1">{card.title}</div>
+                <div className="text-[#6B7280] text-xs leading-relaxed">{card.desc}</div>
               </div>
             </div>
           ))}
         </motion.div>
+
       </div>
     </section>
   );

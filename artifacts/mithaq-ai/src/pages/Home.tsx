@@ -29,14 +29,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
-      {/* Navbar — dark, sticky, glass blur */}
+      {/* Navbar — white, sticky, clean shadow */}
       <header
-        className="fixed top-0 inset-x-0 z-50 backdrop-blur-md"
-        style={{
-          background: "rgba(7, 9, 26, 0.85)",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-        }}
+        className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md"
+        style={{ borderBottom: "1px solid #E5E9EF", boxShadow: "0 1px 8px rgba(0,0,0,0.06)" }}
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
@@ -49,18 +45,18 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="font-black text-lg" style={{ color: "#EBF0FC" }}>
+              <span className="font-black text-lg" style={{ color: "#1A1A1A" }}>
                 ميثاق{" "}
-                <span style={{ color: "#00C87A" }}>AI</span>
+                <span style={{ color: "#006C35" }}>AI</span>
               </span>
-              <span className="text-[10px] font-medium tracking-wider uppercase" style={{ color: "#4A6080" }}>
+              <span className="text-[10px] font-medium tracking-wider uppercase" style={{ color: "#6B7280" }}>
                 Saudi Legal Engineering
               </span>
             </div>
           </div>
 
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium" style={{ color: "#4A5568" }}>
             {[
               { href: "#upload-section", label: "رفع العقد" },
               { href: "#agents", label: "الوكلاء" },
@@ -69,10 +65,10 @@ export default function Home() {
               <a
                 key={link.href}
                 href={link.href}
-                className="transition-colors duration-200"
-                style={{ color: "#7A90B5" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#00C87A")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#7A90B5")}
+                className="transition-colors duration-200 hover:text-saudi"
+                style={{ color: "inherit" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#006C35")}
+                onMouseLeave={e => (e.currentTarget.style.color = "")}
               >
                 {link.label}
               </a>
@@ -84,11 +80,11 @@ export default function Home() {
             onClick={scrollToUpload}
             className="text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-200 hover:scale-105 text-white"
             style={{
-              background: "linear-gradient(135deg, #006C35, #00A86B)",
-              boxShadow: "0 4px 20px rgba(0,168,107,0.35)",
+              background: "#006C35",
+              boxShadow: "0 4px 14px rgba(0,108,53,0.25)",
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 28px rgba(0,168,107,0.55)"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 20px rgba(0,168,107,0.35)"; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#005028"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#006C35"; }}
           >
             ابدأ الآن
           </button>
@@ -122,7 +118,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer style={{ background: "#050810", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <footer style={{ background: "#F5F7FA", borderTop: "1px solid #E5E9EF" }}>
         <div className="max-w-6xl mx-auto px-6 py-12 text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
             <div style={{ width: 30, height: 30 }}>
@@ -132,15 +128,15 @@ export default function Home() {
                 style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />
             </div>
-            <span className="font-black" style={{ color: "#EBF0FC" }}>
+            <span className="font-black" style={{ color: "#1A1A1A" }}>
               ميثاق{" "}
-              <span style={{ color: "#00C87A" }}>AI</span>
+              <span style={{ color: "#006C35" }}>AI</span>
             </span>
           </div>
-          <p className="text-sm mb-1" style={{ color: "#4A6080" }}>
+          <p className="text-sm mb-1" style={{ color: "#6B7280" }}>
             Saudi Legal Engineering Platform — هندسة قانونية لعقود جاهزة للاستثمار
           </p>
-          <p className="text-xs" style={{ color: "#2A3A55" }}>
+          <p className="text-xs" style={{ color: "#AAB7C4" }}>
             نسخة تجريبية — Hackathon Demo v1.0
           </p>
         </div>
