@@ -56,25 +56,34 @@ export function UploadSection({ onResults }: UploadSectionProps) {
     setCompletedSteps([]);
     const startTime = Date.now();
 
-    // Animate through steps
     for (let i = 0; i < ANALYSIS_STEPS.length; i++) {
       setCurrentStep(i);
       await new Promise((r) => setTimeout(r, 1400));
       setCompletedSteps((prev) => [...prev, i]);
     }
 
-    // Call the (mock) analyzeContract function
-    // TODO: Pass the actual file to the real API when backend is ready
     const report = await analyzeContract(selectedFile);
     const timeSeconds = Math.round((Date.now() - startTime) / 1000);
     setUploadState("done");
     onResults(report, timeSeconds);
   };
 
+  const dropzoneBorderColor = dragOver
+    ? "#006C35"
+    : uploadState === "ready"
+    ? "#00A86B"
+    : "#D1D5DB";
+
+  const dropzoneBg = dragOver
+    ? "rgba(0,168,107,0.04)"
+    : uploadState === "ready"
+    ? "rgba(0,168,107,0.03)"
+    : "#FFFFFF";
+
   return (
-    <section id="upload" className="py-24 px-6 relative">
+    <section className="py-24 px-6" style={{ background: "#F5F7FA" }}>
       <div className="max-w-3xl mx-auto">
-        {/* Section header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,14 +91,17 @@ export function UploadSection({ onResults }: UploadSectionProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-sm font-medium mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4"
+            style={{ border: "1px solid rgba(0,108,53,0.18)", background: "#DDF7EA", color: "#006C35" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#006C35" }} />
             رفع العقد
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color: "#1A1A1A" }}>
             ابدأ الهندسة القانونية
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-lg" style={{ color: "#4A5568" }}>
             ارفع عقدك بصيغة PDF وسيتولى فريق الوكلاء هندسته وسعودته وتقييم جاهزيته الاستثمارية
           </p>
         </motion.div>
@@ -104,17 +116,12 @@ export function UploadSection({ onResults }: UploadSectionProps) {
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={() => setDragOver(false)}
           onClick={() => uploadState !== "analyzing" && fileInputRef.current?.click()}
-          className={`
-            relative rounded-2xl border-2 border-dashed p-14 text-center cursor-pointer
-            transition-all duration-300
-            ${dragOver
-              ? "border-emerald-400 bg-emerald-400/5"
-              : uploadState === "ready"
-              ? "border-emerald-500/50 bg-emerald-500/5"
-              : "border-border hover:border-emerald-500/40 hover:bg-emerald-500/3"
-            }
-            ${uploadState === "analyzing" ? "pointer-events-none" : ""}
-          `}
+          className={`relative rounded-2xl border-2 border-dashed p-14 text-center cursor-pointer transition-all duration-300 ${uploadState === "analyzing" ? "pointer-events-none" : ""}`}
+          style={{
+            borderColor: dropzoneBorderColor,
+            background: dropzoneBg,
+            boxShadow: dragOver ? "0 0 0 4px rgba(0,168,107,0.10)" : "none",
+          }}
         >
           <input
             ref={fileInputRef}
@@ -133,15 +140,27 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                 exit={{ opacity: 0 }}
                 className="flex flex-col items-center gap-4"
               >
-                <div className="w-20 h-20 rounded-2xl bg-card border border-border flex items-center justify-center text-4xl">
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl"
+                  style={{ background: "#DDF7EA" }}
+                >
                   📄
                 </div>
                 <div>
-                  <p className="text-foreground font-bold text-lg mb-1">اسحب وأفلت ملف PDF هنا</p>
-                  <p className="text-muted-foreground text-sm">أو انقر للاختيار من جهازك</p>
+                  <p className="font-bold text-lg mb-1" style={{ color: "#1A1A1A" }}>
+                    اسحب وأفلت ملف PDF هنا
+                  </p>
+                  <p className="text-sm" style={{ color: "#6B7280" }}>
+                    أو انقر للاختيار من جهازك
+                  </p>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground/60">
-                  <span className="px-2 py-0.5 rounded border border-border/50 bg-muted/30">PDF</span>
+                <div className="flex items-center gap-2 text-xs" style={{ color: "#9CA3AF" }}>
+                  <span
+                    className="px-2 py-0.5 rounded font-medium"
+                    style={{ background: "#F5F7FA", border: "1px solid #E5E9EF" }}
+                  >
+                    PDF
+                  </span>
                   <span>حتى 10 ميغابايت</span>
                 </div>
               </motion.div>
@@ -155,16 +174,19 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                 exit={{ opacity: 0 }}
                 className="flex flex-col items-center gap-3"
               >
-                <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-3xl">
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
+                  style={{ background: "#DDF7EA" }}
+                >
                   ✅
                 </div>
                 <div>
-                  <p className="text-emerald-400 font-bold">{selectedFile?.name}</p>
-                  <p className="text-muted-foreground text-sm mt-1">
+                  <p className="font-bold" style={{ color: "#006C35" }}>{selectedFile?.name}</p>
+                  <p className="text-sm mt-1" style={{ color: "#6B7280" }}>
                     {selectedFile ? (selectedFile.size / 1024).toFixed(1) : 0} KB
                   </p>
                 </div>
-                <p className="text-xs text-muted-foreground">انقر لتغيير الملف</p>
+                <p className="text-xs" style={{ color: "#9CA3AF" }}>انقر لتغيير الملف</p>
               </motion.div>
             )}
 
@@ -178,10 +200,10 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                 <div className="text-4xl mb-2">
                   {uploadState === "done" ? "✅" : "🤖"}
                 </div>
-                <p className="text-foreground font-bold">
-                  {uploadState === "done" ? "اكتمل التحليل!" : "جاري التحليل..."}
+                <p className="font-bold" style={{ color: "#1A1A1A" }}>
+                  {uploadState === "done" ? "اكتملت الهندسة القانونية!" : "جاري هندسة العقد..."}
                 </p>
-                <p className="text-muted-foreground text-sm">{selectedFile?.name}</p>
+                <p className="text-sm" style={{ color: "#6B7280" }}>{selectedFile?.name}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -194,11 +216,15 @@ export function UploadSection({ onResults }: UploadSectionProps) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-8 rounded-2xl border border-border bg-card overflow-hidden"
+              className="mt-6 rounded-2xl bg-white overflow-hidden"
+              style={{ border: "1px solid #E5E9EF", boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}
             >
               <div className="p-6">
-                <h3 className="font-bold text-foreground mb-5 text-sm uppercase tracking-wider text-emerald-400/80">
-                  مراحل التحليل
+                <h3
+                  className="font-bold mb-5 text-xs uppercase tracking-wider"
+                  style={{ color: "#006C35" }}
+                >
+                  مراحل الهندسة القانونية
                 </h3>
                 <div className="space-y-4">
                   {ANALYSIS_STEPS.map((step, index) => {
@@ -214,36 +240,47 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                       >
                         {/* Step indicator */}
                         <div
-                          className={`
-                            w-9 h-9 rounded-xl flex items-center justify-center text-sm flex-shrink-0 transition-all duration-500
-                            ${isCompleted
-                              ? "bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
+                          className="w-9 h-9 rounded-xl flex items-center justify-center text-sm flex-shrink-0 transition-all duration-500"
+                          style={{
+                            background: isCompleted
+                              ? "#DDF7EA"
                               : isActive
-                              ? "bg-emerald-500/10 border border-emerald-400/50 animate-pulse-emerald"
-                              : "bg-muted/30 border border-border/50 opacity-40"
-                            }
-                          `}
+                              ? "rgba(0,168,107,0.08)"
+                              : "#F5F7FA",
+                            border: isCompleted
+                              ? "1.5px solid rgba(0,108,53,0.30)"
+                              : isActive
+                              ? "1.5px solid rgba(0,168,107,0.40)"
+                              : "1.5px solid #E5E9EF",
+                            color: isCompleted ? "#006C35" : "#9CA3AF",
+                            opacity: isCompleted || isActive ? 1 : 0.5,
+                          }}
                         >
                           {isCompleted ? "✓" : step.icon}
                         </div>
 
-                        {/* Step label */}
+                        {/* Label */}
                         <div className="flex-1">
                           <p
-                            className={`font-medium text-sm transition-colors duration-300 ${
-                              isCompleted
-                                ? "text-emerald-400"
+                            className="font-medium text-sm transition-colors duration-300"
+                            style={{
+                              color: isCompleted
+                                ? "#006C35"
                                 : isActive
-                                ? "text-foreground"
-                                : "text-muted-foreground/50"
-                            }`}
+                                ? "#1A1A1A"
+                                : "#9CA3AF",
+                            }}
                           >
                             {step.label}
                           </p>
                           {isActive && (
-                            <div className="mt-1.5 h-1 rounded-full bg-muted/30 overflow-hidden">
+                            <div
+                              className="mt-1.5 h-1 rounded-full overflow-hidden"
+                              style={{ background: "#E5E9EF" }}
+                            >
                               <motion.div
-                                className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-blue-400"
+                                className="h-full rounded-full"
+                                style={{ background: "linear-gradient(to left, #C9A227, #006C35)" }}
                                 initial={{ width: "0%" }}
                                 animate={{ width: "100%" }}
                                 transition={{ duration: 1.2, ease: "easeInOut" }}
@@ -252,15 +289,26 @@ export function UploadSection({ onResults }: UploadSectionProps) {
                           )}
                         </div>
 
-                        {/* Status badge */}
+                        {/* Badge */}
                         <div
-                          className={`text-xs font-medium px-2 py-0.5 rounded-full transition-all duration-300 ${
-                            isCompleted
-                              ? "text-emerald-400 bg-emerald-500/10 border border-emerald-500/20"
+                          className="text-xs font-bold px-2.5 py-0.5 rounded-full transition-all duration-300"
+                          style={{
+                            color: isCompleted
+                              ? "#006C35"
                               : isActive
-                              ? "text-amber-400 bg-amber-500/10 border border-amber-500/20"
-                              : "text-transparent bg-transparent border border-transparent"
-                          }`}
+                              ? "#C9A227"
+                              : "transparent",
+                            background: isCompleted
+                              ? "#DDF7EA"
+                              : isActive
+                              ? "rgba(201,162,39,0.10)"
+                              : "transparent",
+                            border: isCompleted
+                              ? "1px solid rgba(0,108,53,0.20)"
+                              : isActive
+                              ? "1px solid rgba(201,162,39,0.25)"
+                              : "1px solid transparent",
+                          }}
                         >
                           {isCompleted ? "مكتمل" : isActive ? "جاري..." : ""}
                         </div>
@@ -273,7 +321,7 @@ export function UploadSection({ onResults }: UploadSectionProps) {
           )}
         </AnimatePresence>
 
-        {/* Analyze button */}
+        {/* Action buttons */}
         <AnimatePresence>
           {uploadState === "ready" && (
             <motion.div
@@ -284,14 +332,19 @@ export function UploadSection({ onResults }: UploadSectionProps) {
             >
               <button
                 onClick={runAnalysis}
-                className="px-12 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                className="px-12 py-4 text-lg font-bold rounded-2xl transition-all duration-300 hover:scale-105 text-white"
                 style={{
-                  background: "linear-gradient(135deg, hsl(158, 100%, 33%) 0%, hsl(158, 100%, 28%) 100%)",
-                  color: "hsl(222, 47%, 8%)",
-                  boxShadow: "0 0 30px rgba(0, 168, 107, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+                  background: "#006C35",
+                  boxShadow: "0 8px 28px rgba(0,108,53,0.25)",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.background = "#005028";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.background = "#006C35";
                 }}
               >
-                تحليل العقد
+                هندسة العقد
               </button>
             </motion.div>
           )}
@@ -304,14 +357,13 @@ export function UploadSection({ onResults }: UploadSectionProps) {
             >
               <button
                 onClick={resetAnalysis}
-                className="px-12 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                className="px-12 py-4 text-lg font-bold rounded-2xl transition-all duration-300 hover:scale-105 text-white"
                 style={{
-                  background: "linear-gradient(135deg, hsl(158, 100%, 33%) 0%, hsl(158, 100%, 28%) 100%)",
-                  color: "hsl(222, 47%, 8%)",
-                  boxShadow: "0 0 30px rgba(0, 168, 107, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4)",
+                  background: "#006C35",
+                  boxShadow: "0 8px 28px rgba(0,108,53,0.25)",
                 }}
               >
-                تحليل عقد جديد 🔄
+                هندسة عقد جديد ↺
               </button>
             </motion.div>
           )}

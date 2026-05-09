@@ -14,5 +14,22 @@ export async function analyzeContract(file: File): Promise<ComplianceReport> {
   }
 
   const data = await response.json();
-  return data.report as ComplianceReport;
+  const raw = data.report;
+
+  // Normalize API response to current ComplianceReport shape,
+  // providing safe defaults for fields added in the Legal Engineering rebrand
+  // so the frontend renders correctly even if the API predates this update.
+  return {
+    scoreBefore: raw.scoreBefore ?? 0,
+    scoreAfter: raw.scoreAfter ?? 0,
+    statusLabel: raw.statusLabel ?? "—",
+    rows: (raw.rows ?? []).map((r: Record<string, unknown>) => ({
+      ...r,
+      financialRisk: (r.financialRisk as string) ?? "—",
+    })),
+    investmentReadiness: raw.investmentReadiness ?? raw.scoreAfter ?? 0,
+    riskMeter: raw.riskMeter ?? 0,
+    saudiCompliance: raw.saudiCompliance ?? raw.scoreAfter ?? 0,
+    financialRiskEstimate: raw.financialRiskEstimate ?? 0,
+  } as ComplianceReport;
 }

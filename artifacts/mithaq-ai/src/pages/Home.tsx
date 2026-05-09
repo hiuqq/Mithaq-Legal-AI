@@ -29,56 +29,83 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background" dir="rtl">
-      {/* Header / Navbar */}
-      <header className="fixed top-0 inset-x-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center relative">
+      {/* Navbar — white, sticky, clean shadow */}
+      <header
+        className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md"
+        style={{ borderBottom: "1px solid #E5E9EF", boxShadow: "0 1px 8px rgba(0,0,0,0.06)" }}
+      >
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center" style={{ width: 44, height: 44 }}>
+            <div className="flex items-center justify-center" style={{ width: 40, height: 40 }}>
               <img
                 src="/logo.png"
                 alt="Mithaq AI"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                  filter: "drop-shadow(0 0 8px rgba(0,168,107,0.6))",
-                }}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />
             </div>
-            <span className="font-black text-foreground text-lg tracking-tight">
-              ميثاق <span className="text-emerald-400">AI</span>
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className="font-black text-lg" style={{ color: "#1A1A1A" }}>
+                ميثاق{" "}
+                <span style={{ color: "#006C35" }}>AI</span>
+              </span>
+              <span className="text-[10px] font-medium tracking-wider uppercase" style={{ color: "#6B7280" }}>
+                Saudi Legal Engineering
+              </span>
+            </div>
           </div>
 
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground absolute left-1/2 -translate-x-1/2">
-            <a href="#upload" className="hover:text-emerald-400 transition-colors">رفع العقد</a>
-            <a href="#agents" className="hover:text-emerald-400 transition-colors">الوكلاء</a>
-            <a href="#architecture" className="hover:text-emerald-400 transition-colors">المعمارية</a>
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium" style={{ color: "#4A5568" }}>
+            {[
+              { href: "#upload-section", label: "رفع العقد" },
+              { href: "#agents", label: "الوكلاء" },
+              { href: "#architecture", label: "المعمارية" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition-colors duration-200 hover:text-saudi"
+                style={{ color: "inherit" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#006C35")}
+                onMouseLeave={e => (e.currentTarget.style.color = "")}
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
+          {/* CTA */}
+          <button
+            onClick={scrollToUpload}
+            className="text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-200 hover:scale-105 text-white"
+            style={{
+              background: "#006C35",
+              boxShadow: "0 4px 14px rgba(0,108,53,0.25)",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#005028"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "#006C35"; }}
+          >
+            ابدأ الآن
+          </button>
         </div>
       </header>
 
-      {/* Main content */}
+      {/* Page content */}
       <main>
-        {/* Hero */}
         <HeroSection onStartClick={scrollToUpload} />
 
-        {/* Upload */}
         <div ref={uploadRef} id="upload-section">
           <UploadSection onResults={handleResults} />
 
-          {/* Results — shown directly below analysis steps */}
           <AnimatePresence>
             {report && (
               <motion.div
                 ref={resultsRef}
                 key="results"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
               >
                 <ResultsSection report={report} analysisTime={analysisTime} />
               </motion.div>
@@ -86,30 +113,30 @@ export default function Home() {
           </AnimatePresence>
         </div>
 
-        {/* Agents */}
         <AgentsSection />
-
-        {/* Architecture */}
         <ArchitectureSection />
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/30 py-10 px-6 text-center">
-        <div className="max-w-6xl mx-auto">
+      <footer style={{ background: "#F5F7FA", borderTop: "1px solid #E5E9EF" }}>
+        <div className="max-w-6xl mx-auto px-6 py-12 text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="flex items-center justify-center" style={{ width: 32, height: 32 }}>
+            <div style={{ width: 30, height: 30 }}>
               <img
                 src="/logo.png"
                 alt="Mithaq AI"
-                style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,168,107,0.5))" }}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />
             </div>
-            <span className="font-black text-foreground">ميثاق <span className="text-emerald-400">AI</span></span>
+            <span className="font-black" style={{ color: "#1A1A1A" }}>
+              ميثاق{" "}
+              <span style={{ color: "#006C35" }}>AI</span>
+            </span>
           </div>
-          <p className="text-muted-foreground text-sm">
-            منظومة وكلاء ذكية لمراجعة العقود وفق نظام العمل السعودي 2025
+          <p className="text-sm mb-1" style={{ color: "#6B7280" }}>
+            Saudi Legal Engineering Platform — هندسة قانونية لعقود جاهزة للاستثمار
           </p>
-          <p className="text-muted-foreground/40 text-xs mt-3">
+          <p className="text-xs" style={{ color: "#AAB7C4" }}>
             نسخة تجريبية — Hackathon Demo v1.0
           </p>
         </div>
